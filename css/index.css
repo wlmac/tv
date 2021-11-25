@@ -3,8 +3,8 @@
 :root {
     font-family: 'Poppins', sans-serif;
     --bg-grey: #f3f3f3;
-    --light-grey: #eeeeee;
-    --line-grey: #cccccc;
+    --line-grey: #dddddd;
+    --mid-grey: #939393;
     --dark-blue: #073763;
     --gold: #b59659;
 }
@@ -23,12 +23,12 @@ body {
 .announcements {
     width: 70vw;
     height: 85vh;
-    background-color: var(--bg-grey);
+    background-color: white;
 }
 .information {
     width: 30vw;
     height: 85vh;
-    background-color: var(--light-grey);
+    background-color: var(--bg-grey);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,7 +48,7 @@ body {
     font-weight: 400;
     font-size: 2.2rem;
     line-height: 10vh;
-    color: var(--light-grey);
+    color: white;
     margin: 2rem 0;
 }
 hr {
