@@ -1,0 +1,57 @@
+.date-time {
+    padding: 1rem 2.5rem;
+}
+#day-type {
+    padding: 1.5rem 2.5rem;
+    padding-bottom: 0.8rem;
+    font-weight: 300;
+    font-size: 1.8rem;
+    color: var(--dark-blue);
+}
+#week {
+    padding: 0 2.5rem;
+    padding-top: 0rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+#next-period {
+    padding: 0.8rem 2.5rem;
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+.schedule {
+    padding: 1.5rem 2.5rem;
+    padding-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+}
+.schedule .wrapper {
+    display: flex;
+}
+.date-time h1 {
+    font-weight: 400;
+    font-size: 1.8rem;
+}
+.date-time h2 {
+    font-weight: 700;
+    font-size: 4.5rem;
+}
+.schedule .arrows {
+    margin-right: 10px;
+    color: var(--gold);
+}
+.schedule h3 {
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 2.1rem;
+}
+.schedule h4 {
+    font-weight: 300;
+    font-size: 1.3rem;
+    line-height: 2.1rem;
+    text-align: right;
+}
+.schedule .arrows span {
+    line-height: 2.1rem;
+    float: right;
+}
