@@ -21,9 +21,12 @@ body {
     flex-direction: row;
 }
 .announcements {
-    width: 70vw;
-    height: 85vh;
+    width: calc(70vw - 6rem);
+    height: calc(85vh - 6rem);
+    padding: 3rem;
     background-color: white;
+    display: flex;
+    flex-direction: column;
 }
 .information {
     width: 30vw;

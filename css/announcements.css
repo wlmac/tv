@@ -1,0 +1,23 @@
+#title {
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 2.8rem;
+    margin-bottom: 0.8rem;
+}
+#org {
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+date {
+    font-weight: 300;
+    color: var(--mid-grey);
+}
+.scrollable::-webkit-scrollbar {
+    display: none;
+}
+.scrollable {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow: auto;
+    height: 100%;
+}
