@@ -126,7 +126,7 @@ hr {
     left: calc(50vw - 5rem);
     top: 25px;
     cursor: pointer;
-    animation: fade-in 0.6s ease-in-out;
+    animation: fade-in 0.6s ease-out;
 }
 .fullscreen-btn p {
     font-weight: 300;
