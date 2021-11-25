@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    font-family: 'Poppins', sans-serif;
+    --bg-grey: #f3f3f3;
+    --light-grey: #eeeeee;
+    --line-grey: #b7b7b7;
+    --dark-blue: #073763;
+    --gold: #b59659;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
+.announcements {
+    width: 70vw;
+    height: 85vh;
+    background-color: var(--bg-grey);
+}
+.information {
+    width: 30vw;
+    height: 85vh;
+    background-color: var(--light-grey);
+}
+.date-time {
+    padding: 1.5rem 2.5rem;
+}
+#day-type {
+    padding: 0.8rem 2.5rem;
+    font-weight: 300;
+    font-size: 1.8rem;
+}
+#week {
+    padding: 0 2.5rem;
+    padding-top: 1.5rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+.schedule {
+    padding: 1.5rem 2.5rem;
+    padding-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+}
+.schedule .wrapper {
+    display: flex;
+}
+.date-time h1 {
+    font-weight: 600;
+    font-size: 2.6rem;
+}
+.date-time h2 {
+    font-weight: 700;
+    font-size: 2rem;
+}
+.schedule h3 {
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+.schedule h3 span {
+    line-height: 1.3em;
+}
+.schedule h4 {
+    font-weight: 300;
+    font-size: 1.3rem;
+}
+hr {
+    border: 0px solid var(--line-grey);
+    border-top-width: 2px;
+    margin: 0 2.5rem;
+}
+.footer {
+    width: 100vw;
+    height: 15vh;
+    background-color: var(--dark-blue);
+    display: flex;
+    align-items: center;
+}
+.footer img {
+    height: 10vh;
+    margin: 2rem;
+    margin-right: 0;
+}
+.footer h1 {
+    font-weight: 600;
+    font-size: 2.2rem;
+    line-height: 10vh;
+    color: var(--gold);
+    margin: 2rem 1.2rem;
+}
