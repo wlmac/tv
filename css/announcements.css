@@ -25,6 +25,9 @@ date {
     overflow: auto;
     height: 100%;
 }
+.announcements img {
+    width: 100%;
+}
 #announcement-body *:first-child {
     margin-top: 0;
 }
