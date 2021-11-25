@@ -61,24 +61,54 @@ function setSchedule() {
     });
 }
 function updateSchedule() {
-    var curr = new Date().getTime();
+    var curr = new Date();
     var idx = -1;
     try {
+        var mid = ~~(schedule.length/2);
         for(var i = 0; i < schedule.length; i++) {
-            if(Date.parse(schedule[i].time.start) < curr && curr < Date.parse(schedule[i].time.end)) {
+            if(Date.parse(schedule[i].time.start) < curr.getTime() && curr.getTime() < Date.parse(schedule[i].time.end)) {
                 idx = i
-                if(i >= ~~(schedule.length/2)) {
+                if(i >= mid) {
                     idx += 1
                 }
                 break;
             }
         }
-        if(idx == -1 && Date.parse(schedule[~~(schedule.length/2)-1].time.end) < curr && curr < Date.parse(schedule[~~(schedule.length/2)].time.start)) {
-            idx = ~~(schedule.length/2)
+        if(idx == -1 && Date.parse(schedule[mid-1].time.end) < curr.getTime() && curr.getTime() < Date.parse(schedule[mid].time.start)) {
+            idx = mid;
         }
         $(".arrows").children().css("color", $(":root").css("--light-grey"));
         if(idx != -1) {
             $(".arrows").children().eq(idx).css("color", $(":root").css("--gold"));
+        }
+        if(idx == -1) {
+            if(curr.getTime() < Date.parse(schedule[0].time.start) && curr.getDate() == new Date(Date.parse(schedule[0].time.start)).getDate()) {
+                var next = new Date(Date.parse(schedule[0].time.start));
+                var hr = next.getHours() - curr.getHours();
+                var min = next.getMinutes() - curr.getMinutes();
+                if(min < 0) {
+                    min = 60+min;
+                    hr--;
+                }
+                if(min < 10) {
+                    min = "0"+min;
+                }
+                $("#next-period").text(`School starts in ${hr}:${min}`);
+            } else {
+                $("#next-period").text(`School is over`);
+            }
+        } else {
+            var next = new Date(Date.parse(schedule[(idx <= mid ? idx : idx-1)].time.end));
+            var hr = next.getHours() - curr.getHours();
+            var min = next.getMinutes() - curr.getMinutes();
+            if(min < 0) {
+                min = 60+min;
+                hr--;
+            }
+            if(min < 10) {
+                min = "0"+min;
+            }
+            $("#next-period").text((idx == schedule.length ? "School" : (idx == mid ? "Lunch" : "Period")) + ` ends in ${hr}:${min}`);
         }
     } catch(err) {}
 }
@@ -86,5 +116,5 @@ function updateSchedule() {
 $(document).ready(function() {
     setSchedule();
     setDate();
-    setTimeout(setInterval(setDate, 1000), 1000-ms);
+    setTimeout(setInterval(setDate, 500), 1000-ms);
 });
