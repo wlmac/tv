@@ -37,7 +37,7 @@ function setSchedule() {
     $.getJSON("https://maclyonsden.com/api/term/current", function(term) {
         $.getJSON(`https://maclyonsden.com/api/term/${term.id}/schedule`, function(sched) {
             schedule = sched;
-            $("#week").text(schedule[0].cycle);
+            $("#cycle").text(schedule[0].cycle);
             $(".arrows").empty();
             $(".periods").empty();
             $(".start-times").empty();
