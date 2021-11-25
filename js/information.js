@@ -20,10 +20,10 @@ function setDate() {
         if(hr > 12) {
             hr -= 12;
         }
-        period = "PM"
+        period = "PM";
     }
     if(hr == 0) {
-        hr += 12
+        hr += 12;
     }
     $("#date").text(`${day}, ${month} ${date}`);
     $("#time").text(`${hr}:${min} ${period}`);
@@ -67,9 +67,9 @@ function updateSchedule() {
         var mid = ~~(schedule.length/2);
         for(var i = 0; i < schedule.length; i++) {
             if(Date.parse(schedule[i].time.start) < curr.getTime() && curr.getTime() < Date.parse(schedule[i].time.end)) {
-                idx = i
+                idx = i;
                 if(i >= mid) {
-                    idx += 1
+                    idx += 1;
                 }
                 break;
             }
