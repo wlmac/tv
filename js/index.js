@@ -55,7 +55,7 @@ function setSchedule() {
                 $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
                 $(".periods").append(`<h3>${schedule[i].description.course}</h3>`);
                 $(".start-times").append(`<h4>${time}</h4>`);
-                $(".arrows").css("color", $(":root").css("--light-grey"));
+                $(".arrows").children().css("color", $(":root").css("--light-grey"));
             }
         });
     });
@@ -76,7 +76,8 @@ function updateSchedule() {
         if(idx == -1 && Date.parse(schedule[~~(schedule.length/2)-1].time.end) < curr && curr < Date.parse(schedule[~~(schedule.length/2)].time.start)) {
             idx = ~~(schedule.length/2)
         }
-        $(".arrows").css("color", $(":root").css("--light-grey"));
+        $(".arrows").children().css("color", $(":root").css("--light-grey"));
+        console.log(idx);
         if(idx != -1) {
             $(".arrows").children().eq(idx).css("color", $(":root").css("--gold"));
         }
