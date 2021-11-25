@@ -13,11 +13,13 @@
     padding-top: 0rem;
     font-weight: 600;
     font-size: 1.5rem;
+    color: var(--dark-blue);
 }
 #next-period {
     padding: 0.8rem 2.5rem;
     font-weight: 300;
     font-size: 1.2rem;
+    color: var(--dark-grey);
 }
 .schedule {
     padding: 1.5rem 2.5rem;
@@ -44,12 +46,14 @@
     font-weight: 500;
     font-size: 1.3rem;
     line-height: 2.1rem;
+    color: var(--darker-grey);
 }
 .schedule h4 {
     font-weight: 300;
     font-size: 1.3rem;
     line-height: 2.1rem;
     text-align: right;
+    color: var(--dark-grey);
 }
 .schedule .arrows span {
     line-height: 2.1rem;

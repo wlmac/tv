@@ -3,10 +3,12 @@
 :root {
     font-family: 'Poppins', sans-serif;
     --bg-grey: #f3f3f3;
-    --line-grey: #dddddd;
+    --line-grey: #bbbbbb;
     --mid-grey: #939393;
+    --dark-grey: #666666;
+    --darker-grey: #3a3a3a;
     --dark-blue: #073763;
-    --gold: #b59659;
+    --gold: #977c46;
 }
 * {
     margin: 0;
@@ -57,7 +59,6 @@ body {
 hr {
     border: 0px solid var(--line-grey);
     border-top-width: 2px;
-    margin: 0 2.5rem;
 }
 .fullscreen-btn {
     position: fixed;
@@ -68,7 +69,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--gold);
+    color: var(--mid-grey);
     left: calc(50vw - 5rem);
     top: 25px;
     cursor: pointer;
