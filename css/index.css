@@ -4,7 +4,7 @@
     font-family: 'Poppins', sans-serif;
     --bg-grey: #f3f3f3;
     --light-grey: #eeeeee;
-    --line-grey: #b7b7b7;
+    --line-grey: #cccccc;
     --dark-blue: #073763;
     --gold: #b59659;
 }
@@ -29,20 +29,31 @@ body {
     width: 30vw;
     height: 85vh;
     background-color: var(--light-grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .date-time {
-    padding: 1.5rem 2.5rem;
+    padding: 2.5rem 2.5rem;
+    padding-bottom: 1rem;
 }
 #day-type {
-    padding: 0.8rem 2.5rem;
+    padding: 1.5rem 2.5rem;
+    padding-bottom: 0.8rem;
     font-weight: 300;
     font-size: 1.8rem;
+    color: var(--dark-blue);
 }
 #week {
     padding: 0 2.5rem;
-    padding-top: 1.5rem;
+    padding-top: 0rem;
     font-weight: 600;
     font-size: 1.5rem;
+}
+#next-period {
+    padding: 0.8rem 2.5rem;
+    font-weight: 300;
+    font-size: 1.2rem;
 }
 .schedule {
     padding: 1.5rem 2.5rem;
@@ -54,19 +65,20 @@ body {
     display: flex;
 }
 .date-time h1 {
-    font-weight: 600;
-    font-size: 2.6rem;
+    font-weight: 400;
+    font-size: 1.8rem;
 }
 .date-time h2 {
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 4rem;
+}
+.schedule .arrows {
+    margin-right: 10px;
+    color: var(--gold);
 }
 .schedule h3 {
     font-weight: 500;
     font-size: 1.3rem;
-}
-.schedule h3 span {
-    line-height: 1.3em;
 }
 .schedule h4 {
     font-weight: 300;
@@ -90,9 +102,9 @@ hr {
     margin-right: 0;
 }
 .footer h1 {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 2.2rem;
     line-height: 10vh;
-    color: var(--gold);
+    color: var(--light-grey);
     margin: 2rem 1.2rem;
 }
