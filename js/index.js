@@ -48,13 +48,13 @@ function setSchedule() {
                     time = time.slice(time.lastIndexOf('-')+1).trim();
                     $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
                     $(".periods").append(`<h3>Lunch</h3>`);
-                    $(".start-times").append(`<h4>${time}</h4>`);
+                    $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
                 }
                 time = schedule[i].description.time;
                 time = time.slice(0, time.indexOf("-")).trim();
                 $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
                 $(".periods").append(`<h3>${schedule[i].description.course}</h3>`);
-                $(".start-times").append(`<h4>${time}</h4>`);
+                $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
                 $(".arrows").children().css("color", $(":root").css("--light-grey"));
             }
         });
@@ -77,7 +77,6 @@ function updateSchedule() {
             idx = ~~(schedule.length/2)
         }
         $(".arrows").children().css("color", $(":root").css("--light-grey"));
-        console.log(idx);
         if(idx != -1) {
             $(".arrows").children().eq(idx).css("color", $(":root").css("--gold"));
         }
