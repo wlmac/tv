@@ -11,12 +11,8 @@ function setDate() {
     var date = today.getDate();
     var hr = today.getHours();
     var min = today.getMinutes();
-    var sec = today.getSeconds();
     var period = "AM";
     ms = ms = today.getMilliseconds();
-    if(sec < 10) {
-        sec = "0"+sec;
-    }
     if(min < 10) {
         min = "0"+min;
     }
@@ -25,7 +21,7 @@ function setDate() {
         period = "PM"
     }
     $("#date").text(`${day}, ${month} ${date}`);
-    $("#time").text(`${hr}:${min}:${sec} ${period}`);
+    $("#time").text(`${hr}:${min} ${period}`);
     updateSchedule();
     if(pdate != date) {
         setSchedule();
@@ -46,13 +42,13 @@ function setSchedule() {
                     time = schedule[i-1].description.time;
                     time = time.slice(time.lastIndexOf('-')+1).trim();
                     $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
-                    $(".periods").append(`<h3> Lunch</h3>`);
+                    $(".periods").append(`<h3>Lunch</h3>`);
                     $(".start-times").append(`<h4>${time}</h4>`);
                 }
                 time = schedule[i].description.time;
                 time = time.slice(0, time.indexOf("-")).trim();
                 $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
-                $(".periods").append(`<h3> ${schedule[i].description.course}</h3>`);
+                $(".periods").append(`<h3>${schedule[i].description.course}</h3>`);
                 $(".start-times").append(`<h4>${time}</h4>`);
                 $(".arrows").css("color", $(":root").css("--light-grey"));
             }
@@ -75,9 +71,10 @@ function updateSchedule() {
         if(idx == -1 && Date.parse(schedule[~~(schedule.length/2)-1].time.end) < curr && curr < Date.parse(schedule[~~(schedule.length/2)].time.start)) {
             idx = ~~(schedule.length/2)
         }
+        idx = 2;
         $(".arrows").css("color", $(":root").css("--light-grey"));
         if(idx != -1) {
-            $(".arrows").children().eq(idx).css("color", "black");
+            $(".arrows").children().eq(idx).css("color", $(":root").css("--gold"));
         }
     } catch(err) {}
 }
