@@ -20,6 +20,7 @@
     <link href="css/announcements.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
     <script src="js/information.js"></script>
     <script src="js/announcements.js"></script>
     <script src="js/fullscreen.js"></script>
@@ -28,8 +29,13 @@
 <body>
     <div class="container">
         <div class="announcements">
-            <h1 id="title"></h1>
-            <p id="org"></p>
+            <div class="headers">
+                <div class="info">
+                    <h1 id="title"></h1>
+                    <p id="org"></p>
+                </div>
+                <div id="qrcode"></div>
+            </div>
             <hr style="margin: 1rem 0 1.5rem 0;">
             <div id="announcement-body" class="scrollable"></div>
         </div>

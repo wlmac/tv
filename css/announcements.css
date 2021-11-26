@@ -1,3 +1,10 @@
+.headers {
+    display: flex;
+    justify-content: space-between;
+}
+#qrcode {
+    height: 50px;
+}
 #title {
     margin: 0;
     padding: 0;

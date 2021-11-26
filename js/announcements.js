@@ -63,6 +63,15 @@ function setAnnouncement() {
         }
         $("#org").html(`${getClub(post.organization.id)}<date> • ${month} ${date}, ${hr}:${min} ${period}</date>`);
         $("#announcement-body").html(marked.parse(post.body.replaceAll("/media/", "https://maclyonsden.com/media/")));
+        $("#qrcode").empty();
+        const qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: `https://maclyonsden.com/announcement/${post.id}`,
+            width: 96,
+            height: 96,
+            colorDark : '#000',
+            colorLight : '#fff',
+            correctLevel : QRCode.CorrectLevel.H
+        });
         idx++;
         idx %= announcements.length;
     } catch(err) {console.log(err);}
