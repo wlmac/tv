@@ -4,17 +4,17 @@
 }
 .date-time {
     padding: 1rem 2.5rem;
+    padding-bottom: 0;
 }
 #day-type {
-    padding: 1.5rem 2.5rem;
-    padding-bottom: 0.8rem;
+    padding: 0.8rem 2.5rem;
+    padding-top: 0;
     font-weight: 300;
     font-size: 1.8rem;
     color: var(--dark-blue);
 }
 #cycle {
     padding: 0 2.5rem;
-    padding-top: 0rem;
     font-weight: 600;
     font-size: 1.5rem;
     color: var(--dark-blue);
@@ -62,4 +62,17 @@
 .schedule .arrows span {
     line-height: 2.1rem;
     float: right;
+}
+#weather {
+    display: flex;
+    margin: 0 2.5rem;
+    align-items: center;
+}
+#w-icon {
+    height: 2.5rem;
+    margin-right: 15px;
+}
+#temp {
+    font-size: 2rem;
+    font-weight: 500;
 }
