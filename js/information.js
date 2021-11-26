@@ -3,6 +3,7 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 var ms = 0;
 var schedule;
 var pdate = 0;
+var pr;
 
 function setDate() {
     var today = new Date();
@@ -27,7 +28,15 @@ function setDate() {
     }
     $("#date").text(`${day}, ${month} ${date}`);
     $("#time").text(`${hr}:${min} ${period}`);
-    updateSchedule();
+    pr.then(() => {
+        updateSchedule();
+    }).catch(() => {
+        $("#cycle").text("Something went wrong :(");
+        $(".arrows").empty();
+        $(".periods").empty();
+        $(".start-times").empty();
+        $("#next-period").text("No schedule loaded");
+    });
     if(pdate != date) {
         setSchedule();
         setWeather();
@@ -35,29 +44,39 @@ function setDate() {
     }
 }
 function setSchedule() {
-    $.getJSON("https://maclyonsden.com/api/term/current", function(term) {
-        $.getJSON(`https://maclyonsden.com/api/term/${term.id}/schedule`, function(sched) {
-            schedule = sched;
-            $("#cycle").text(schedule[0].cycle);
-            $(".arrows").empty();
-            $(".periods").empty();
-            $(".start-times").empty();
-            var time;
-            for(var i = 0; i < schedule.length; i++) {
-                if(i == ~~(schedule.length/2) && i > 0) {
-                    time = schedule[i-1].description.time;
-                    time = time.slice(time.lastIndexOf('-')+1).trim();
-                    $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
-                    $(".periods").append(`<h3>Lunch</h3>`);
-                    $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
-                }
-                time = schedule[i].description.time;
-                time = time.slice(0, time.indexOf("-")).trim();
-                $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
-                $(".periods").append(`<h3>${schedule[i].description.course}</h3>`);
-                $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
-                $(".arrows").children().css("color", $(":root").css("--bg-grey"));
+    pr = new Promise((resolve, reject) => {
+        $.getJSON("https://maclyonsden.com/api/term/current", function(term) {
+            if(term === undefined) {
+                reject();
             }
+            $.getJSON(`https://maclyonsden.com/api/term/${term.id}/schedule`, function(sched) {
+                if(sched === undefined) {
+                    reject();
+                }
+                schedule = sched;
+                $("#cycle").text(schedule[0].cycle);
+                $(".arrows").empty();
+                $(".periods").empty();
+                $(".start-times").empty();
+                $("#next-period").text("No schedule loaded");
+                var time;
+                for(var i = 0; i < schedule.length; i++) {
+                    if(i == ~~(schedule.length/2) && i > 0) {
+                        time = schedule[i-1].description.time;
+                        time = time.slice(time.lastIndexOf('-')+1).trim();
+                        $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
+                        $(".periods").append(`<h3>Lunch</h3>`);
+                        $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+                    }
+                    time = schedule[i].description.time;
+                    time = time.slice(0, time.indexOf("-")).trim();
+                    $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
+                    $(".periods").append(`<h3>${schedule[i].description.course}</h3>`);
+                    $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+                    $(".arrows").children().css("color", $(":root").css("--bg-grey"));
+                }
+                resolve();
+            });
         });
     });
 }
@@ -99,7 +118,12 @@ function updateSchedule() {
                 $("#next-period").text(`School is over`);
             }
         } else {
-            var next = new Date(Date.parse(schedule[(idx <= mid ? idx : idx-1)].time.end));
+            var next;
+            if(idx == mid) {
+                next = new Date(Date.parse(schedule[mid].time.start));
+            } else {
+                next = new Date(Date.parse(schedule[(idx < mid ? idx : idx-1)].time.end));
+            }
             var hr = next.getHours() - curr.getHours();
             var min = next.getMinutes() - curr.getMinutes();
             if(min < 0) {
