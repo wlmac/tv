@@ -30,6 +30,7 @@ function setDate() {
     updateSchedule();
     if(pdate != date) {
         setSchedule();
+        setWeather();
         pdate = date;
     }
 }
@@ -114,9 +115,29 @@ function updateSchedule() {
         }
     } catch(err) {}
 }
+function setWeather() {
+    var weather;
+    new Promise((resolve, reject) => {
+        $.getJSON("https://www.metaweather.com/api/location/4118/", function(wth) {
+            if(wth == undefined) {
+                reject();
+            }
+            weather = wth.consolidated_weather[0];
+            resolve();
+        });
+    }).then(() => {
+        $("#w-icon").show();
+        $("#w-icon").attr("src", `https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`);
+        $("#temp").text(`${Math.floor(weather.min_temp)}°C/${Math.ceil(weather.max_temp)}°C`)
+    }).catch(() => {
+        $("$w-icon").hide();
+        $("#temp").text("Weather Unavailable");
+    });
+}
 
 $(document).ready(function() {
     setSchedule();
+    setWeather();
     setDate();
     setTimeout(setInterval(setDate, 500), 1000-ms);
 });
