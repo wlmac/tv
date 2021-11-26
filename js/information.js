@@ -130,9 +130,6 @@ function updateSchedule() {
                 min = 60+min;
                 hr--;
             }
-            if(min < 10) {
-                min = "0"+min;
-            }
             var hours = (hr > 0 ? `${hr} hour${hr != 1 ? "s" : ""} and ` : "");
             var minutes = `${min} minute${min != 1 ? "s" : ""}`;
             $("#next-period").text((idx == schedule.length ? "School" : (idx == mid ? "Lunch" : "Period")) + ` ends in ${hours}${minutes}`);
