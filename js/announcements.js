@@ -13,8 +13,14 @@ function getClub(id) {
 function getAnnouncements() {
     pr = new Promise((resolve, reject) => {
         $.getJSON("https://maclyonsden.com/api/organizations", function(orgs) {
+            if(orgs === undefined) {
+                reject();
+            }
             clubs = orgs;
             $.getJSON("https://maclyonsden.com/api/announcements", function(announce) {
+                if(announce === undefined) {
+                    reject();
+                }
                 var idx = 0;
                 var curr = new Date();
                 curr.setDate(curr.getDate()-5);
@@ -65,7 +71,6 @@ function setAnnouncement() {
 $(document).ready(function() {
     getAnnouncements();
     pr.then(() => {
-        console.log(announcements[idx]);
         var t = Math.max(announcements[idx].body.split(" ").length*1000/3 + 5000*(announcements[idx].body.match(/\/media\//g) || []).length, 5000);
         execute();
 
@@ -91,5 +96,9 @@ $(document).ready(function() {
             changeTimer();
             setTimeout(execute, t);
         }
+    }).catch(() => {
+        $("#title").text("Something went wrong :(");
+        $("#org").text("Please check back later");
+        $("#announcement-body").empty();
     });
 })
