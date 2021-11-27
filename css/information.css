@@ -63,16 +63,3 @@
     line-height: 2.1rem;
     float: right;
 }
-#weather {
-    display: flex;
-    margin: 0 2.5rem;
-    align-items: center;
-}
-#w-icon {
-    height: 2.5rem;
-    margin-right: 15px;
-}
-#temp {
-    font-size: 2rem;
-    font-weight: 500;
-}
