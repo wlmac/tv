@@ -55,7 +55,6 @@ body {
 .footer h1 {
     font-weight: 300;
     font-size: 3.5vh;
-    line-height: 10vh;
     color: white;
     margin: 0;
 }
@@ -69,7 +68,6 @@ body {
     margin-right: 15px;
 }
 #temp {
-    font-size: 4.2vh;
     font-weight: 400;
 }
 hr {
