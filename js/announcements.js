@@ -62,6 +62,9 @@ function setAnnouncement() {
             hr += 12
         }
         $("#org").html(`${getClub(post.organization.id)}<date> • ${month} ${date}, ${hr}:${min} ${period}</date>`);
+        marked.setOptions({
+            breaks: true
+        });
         $("#announcement-body").html(marked.parse(post.body.replaceAll("/media/", "https://maclyonsden.com/media/")));
         $("#qrcode").empty();
         const qrcode = new QRCode(document.getElementById("qrcode"), {
