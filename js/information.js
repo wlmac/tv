@@ -48,39 +48,47 @@ function setDate() {
 }
 function setSchedule() {
     pr = new Promise((resolve, reject) => {
-        $.getJSON("https://maclyonsden.com/api/term/current", function(term) {
-            if(term === undefined) {
-                reject();
-            }
-            $.getJSON(`https://maclyonsden.com/api/term/${term.id}/schedule`, function(sched) {
-                if(sched === undefined) {
+        try {
+            $.getJSON("https://maclyonsden.com/api/term/current", function(term) {
+                if(term === undefined) {
                     reject();
                 }
-                schedule = sched;
-                $("#cycle").text(schedule[0].cycle);
-                $(".arrows").empty();
-                $(".periods").empty();
-                $(".start-times").empty();
-                $("#next-period").text("No schedule loaded");
-                var time;
-                for(var i = 0; i < schedule.length; i++) {
-                    if(i == ~~(schedule.length/2) && i > 0) {
-                        time = schedule[i-1].description.time;
-                        time = time.slice(time.lastIndexOf('-')+1).trim();
-                        $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
-                        $(".periods").append(`<h3>Lunch</h3>`);
-                        $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+                $.getJSON(`https://maclyonsden.com/api/term/${term.id}/schedule`, function(sched) {
+                    if(sched === undefined) {
+                        reject();
                     }
-                    time = schedule[i].description.time;
-                    time = time.slice(0, time.indexOf("-")).trim();
-                    $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
-                    $(".periods").append(`<h3>${schedule[i].description.course}</h3>`);
-                    $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
-                    $(".arrows").children().css("color", $(":root").css("--bg-grey"));
-                }
-                resolve();
+                    schedule = sched;
+                    $("#cycle").text(schedule[0].cycle);
+                    $(".arrows").empty();
+                    $(".periods").empty();
+                    $(".start-times").empty();
+                    $("#next-period").text("No schedule loaded");
+                    var time;
+                    for(var i = 0; i < schedule.length; i++) {
+                        if(i == ~~(schedule.length/2) && i > 0) {
+                            time = schedule[i-1].description.time;
+                            time = time.slice(time.lastIndexOf('-')+1).trim();
+                            $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
+                            $(".periods").append(`<h3>Lunch</h3>`);
+                            $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+                        }
+                        time = schedule[i].description.time;
+                        time = time.slice(0, time.indexOf("-")).trim();
+                        $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
+                        $(".periods").append(`<h3>${schedule[i].description.course}</h3>`);
+                        $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+                        $(".arrows").children().css("color", $(":root").css("--bg-grey"));
+                    }
+                    resolve();
+                }).fail(() => {
+                    reject();
+                });
+            }).fail(() => {
+                reject();
             });
-        });
+        } catch(err) {
+            reject();
+        }
     });
 }
 function updateSchedule() {
@@ -143,13 +151,20 @@ function setWeather() {
     var weather;
     new Promise((resolve, reject) => {
         var apikey = localStorage.getItem("accuweather-api-key");    
-        $.getJSON(`https://dataservice.accuweather.com/currentconditions/v1/49569?apikey=${apikey}`, function(wth) {
-            if(wth == undefined) {
+        try {
+            $.getJSON(`https://dataservice.accuweather.com/currentconditions/v1/49569?apikey=${apikey}`, function(wth) {
+                if(wth == undefined) {
+                    reject();
+                }
+                weather = wth[0];
+                resolve();
+            }).fail(() => {
                 reject();
-            }
-            weather = wth[0];
-            resolve();
-        });
+                console.log('asdf');
+            });
+        } catch(err) {
+            reject();
+        }
     }).then(() => {
         $("#w-icon").show();
         $("#w-icon").attr("src", `https://www.accuweather.com/images/weathericons/${weather.WeatherIcon}.svg`);

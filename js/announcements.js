@@ -12,31 +12,40 @@ function getClub(id) {
 }
 function getAnnouncements() {
     pr = new Promise((resolve, reject) => {
-        $.getJSON("https://maclyonsden.com/api/organizations", function(orgs) {
-            if(orgs === undefined) {
-                reject();
-            }
-            clubs = orgs;
-            $.getJSON("https://maclyonsden.com/api/announcements", function(announce) {
-                if(announce === undefined) {
+        try {
+            $.getJSON("https://maclyonsden.com/api/organizations", function(orgs) {
+                if(orgs === undefined) {
                     reject();
                 }
-                var idx = 0;
-                var curr = new Date();
-                curr.setDate(curr.getDate()-5);
-                for(idx = 0; idx < announce.length; idx++) {
-                    if(Date.parse(announce[idx].last_modified_date) < curr.getTime()) {
-                        break;
+                clubs = orgs;
+                $.getJSON("https://maclyonsden.com/api/announcements", function(announce) {
+                    if(announce === undefined) {
+                        reject();
                     }
-                }
-                announcements = announce.slice(0, idx+1);
-                if(announcements.length > 8) {
-                    announcements = announcements.slice(0, 8);
-                }
-                console.log("API Call");
-                resolve();
+                    var idx = 0;
+                    var curr = new Date();
+                    curr.setDate(curr.getDate()-5);
+                    for(idx = 0; idx < announce.length; idx++) {
+                        if(Date.parse(announce[idx].last_modified_date) < curr.getTime()) {
+                            break;
+                        }
+                    }
+                    announcements = announce.slice(0, idx+1);
+                    if(announcements.length > 8) {
+                        announcements = announcements.slice(0, 8);
+                    }
+                    console.log("API Call");
+                    resolve();
+                }).fail(() => {
+                    reject();
+                });
+            }).fail(() => {
+                reject();
             });
-        });
+        } catch(err) {
+            console.log(err);
+            reject();
+        }
     });
 }
 function setAnnouncement() {
