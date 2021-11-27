@@ -1,7 +1,7 @@
 var announcements;
 var clubs;
 var idx = 0;
-var pr;
+var a_pr;
 
 function getClub(id) {
     for(var i = 0; i < clubs.length; i++) {
@@ -11,7 +11,7 @@ function getClub(id) {
     }
 }
 function getAnnouncements() {
-    pr = new Promise((resolve, reject) => {
+    a_pr = new Promise((resolve, reject) => {
         try {
             $.getJSON("https://maclyonsden.com/api/organizations", function(orgs) {
                 if(orgs === undefined) {
@@ -93,7 +93,7 @@ function setAnnouncement() {
 
 $(document).ready(function() {
     getAnnouncements();
-    pr.then(() => {
+    a_pr.then(() => {
         var t = Math.max(announcements[idx].body.split(" ").length*1000/3 + 5000*(announcements[idx].body.match(/\/media\//g) || []).length, 5000);
         execute();
 

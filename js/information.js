@@ -3,7 +3,7 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 var ms = 0;
 var schedule;
 var pdate = 0;
-var pr;
+var s_pr;
 
 function setDate() {
     var today = new Date();
@@ -32,7 +32,7 @@ function setDate() {
     }
     $("#date").text(`${day}, ${month} ${date}`);
     $("#time").text(`${hr}:${min} ${period}`);
-    pr.then(() => {
+    s_pr.then(() => {
         updateSchedule();
     }).catch(() => {
         $("#cycle").css("padding-bottom", "0");
@@ -48,7 +48,7 @@ function setDate() {
     }
 }
 function setSchedule() {
-    pr = new Promise((resolve, reject) => {
+    s_pr = new Promise((resolve, reject) => {
         try {
             $.getJSON("https://maclyonsden.com/api/term/current", function(term) {
                 if(term === undefined) {
