@@ -22,7 +22,7 @@ body {
 }
 .announcements {
     width: calc(70vw - 6rem);
-    height: calc(85vh - 6rem);
+    height: calc(88vh - 6rem);
     padding: 3rem;
     background-color: white;
     display: flex;
@@ -30,7 +30,7 @@ body {
 }
 .information {
     width: 30vw;
-    height: 85vh;
+    height: 88vh;
     background-color: var(--bg-grey);
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@ body {
 }
 .footer {
     width: 100vw;
-    height: 15vh;
+    height: 12vh;
     background-color: var(--dark-blue);
     display: flex;
     align-items: center;
@@ -49,12 +49,12 @@ body {
     align-items: center;
 }
 .footer img {
-    height: 12vh;
+    height: 10vh;
     margin: 0 1.4rem;
 }
 .footer h1 {
-    font-weight: 400;
-    font-size: 5vh;
+    font-weight: 300;
+    font-size: 3.5vh;
     line-height: 10vh;
     color: white;
     margin: 0;
@@ -69,7 +69,7 @@ body {
     margin-right: 15px;
 }
 #temp {
-    font-size: 2.5rem;
+    font-size: 4.2vh;
     font-weight: 400;
 }
 hr {
