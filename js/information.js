@@ -58,26 +58,35 @@ function setSchedule() {
                         reject();
                     }
                     schedule = sched;
-                    $("#cycle").text(schedule[0].cycle);
-                    $(".arrows").empty();
-                    $(".periods").empty();
-                    $(".start-times").empty();
-                    $("#next-period").text("No schedule loaded");
-                    var time;
-                    for(var i = 0; i < schedule.length; i++) {
-                        if(i == ~~(schedule.length/2) && i > 0) {
-                            time = schedule[i-1].description.time;
-                            time = time.slice(time.lastIndexOf('-')+1).trim();
+                    var today = new Date();
+                    if(today.getDay() == 0 || today.getDay() == 6) {
+                        $("#cycle").text("Weekend");
+                        $(".arrows").empty();
+                        $(".periods").empty();
+                        $(".start-times").empty();
+                        $("#next-period").text("No school today");
+                    } else {
+                        $("#cycle").text(schedule[0].cycle);
+                        $(".arrows").empty();
+                        $(".periods").empty();
+                        $(".start-times").empty();
+                        $("#next-period").text("No schedule loaded");
+                        var time;
+                        for(var i = 0; i < schedule.length; i++) {
+                            if(i == ~~(schedule.length/2) && i > 0) {
+                                time = schedule[i-1].description.time;
+                                time = time.slice(time.lastIndexOf('-')+1).trim();
+                                $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
+                                $(".periods").append(`<h3>Lunch</h3>`);
+                                $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+                            }
+                            time = schedule[i].description.time;
+                            time = time.slice(0, time.indexOf("-")).trim();
                             $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
-                            $(".periods").append(`<h3>Lunch</h3>`);
+                            $(".periods").append(`<h3>${schedule[i].description.course}</h3>`);
                             $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+                            $(".arrows").children().css("color", $(":root").css("--bg-grey"));
                         }
-                        time = schedule[i].description.time;
-                        time = time.slice(0, time.indexOf("-")).trim();
-                        $(".arrows").append(`<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`);
-                        $(".periods").append(`<h3>${schedule[i].description.course}</h3>`);
-                        $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
-                        $(".arrows").children().css("color", $(":root").css("--bg-grey"));
                     }
                     resolve();
                 }).fail(() => {
