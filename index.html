@@ -11,7 +11,8 @@
     <meta property="og:title" content="Metropolis TV Screen">
     <meta name="og:description"
         content="Informational site to be shown on the TV in the school foyer.">
-    <meta name="og:image" content="/images/enemy_1.png">
+    <meta name="og:image" content="img/logo.png">
+    <meta name="author" content="Eric Shim">
     <link rel="icon" type="image/png" size="32x32" href="img/logo.png">
     <link rel="apple-touch-icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -27,50 +28,67 @@
     <title>TV | Metropolis</title>
 </head>
 <body>
+    <!-- Container for announcements and information -->
     <div class="container">
+        <!-- Container for announcements -->
         <div class="announcements">
+            <!-- Wrapper for announcement headers -->
             <div class="headers">
+                <!-- Wrapper for announcement title and authoring club -->
                 <div class="info">
                     <h1 id="title"></h1>
                     <p id="org"></p>
                 </div>
+                <!-- Wrapper for qr code linking to announcement page -->
                 <div class="qr">
                     <p id="qrinfo"></p>
                     <div id="qrcode"></div>
                 </div>
             </div>
             <hr style="margin: 1rem 0 1.5rem 0;">
+            <!-- Wrapper for announcement itself -->
             <div id="announcement-body" class="scrollable"></div>
         </div>
+        <!-- Container for schedule/time information -->
         <div class="information">
+            <!-- Wrapper for date and time -->
             <div class="date-time">
                 <h1 id="date"></h1>
                 <h2 id="time"></h2>
             </div>
             <hr style="margin: 1.5rem 2.5rem;">
             <!--h1 id="day-type">Regular Schedule</h1-->
+            <!-- Shows week/day 1/2 -->
             <h2 id="cycle"></h2>
+            <!-- Wrapper for schedule -->
             <div class="schedule">
+                <!-- Wrapper for periods and the current period arrows -->
                 <div class="schedule-wrapper">
                     <div class="arrows"></div>
                     <div class="periods"></div>
                 </div>
+                <!-- Period start times -->
                 <div class="start-times"></div>
             </div>
             <hr style="margin: 0 2.5rem;">
+            <!-- Shows time until next period -->
             <p id="next-period"></p>
         </div>
     </div>
+    <!-- Container for footer -->
     <div class="footer">
+        <!-- Metropolis branding -->
         <div id="site-name">
             <img src="img/logo-transparent.png">
             <h1>Metropolis TV</h1>
         </div>
+        <!-- Current weather status -->
         <div id="weather">
             <h1 id="temp"></h1>
             <img id="w-icon">
         </div>
     </div>
+    <!-- Floating fullscreen button -->
     <button class="fullscreen-btn"><span class="material-icons">fullscreen</span><p>Fullscreen</p></button>
 </body>
 </html>
