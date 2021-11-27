@@ -105,26 +105,26 @@ function setSchedule() {
 }
 function updateSchedule() {
     var curr = new Date();
-    var idx = -1;
+    var index = -1;
     try {
         var mid = ~~(schedule.length/2);
         for(var i = 0; i < schedule.length; i++) {
             if(Date.parse(schedule[i].time.start) < curr.getTime() && curr.getTime() < Date.parse(schedule[i].time.end)) {
-                idx = i;
+                index = i;
                 if(i >= mid) {
-                    idx += 1;
+                    index += 1;
                 }
                 break;
             }
         }
-        if(idx == -1 && Date.parse(schedule[mid-1].time.end) < curr.getTime() && curr.getTime() < Date.parse(schedule[mid].time.start)) {
-            idx = mid;
+        if(index == -1 && Date.parse(schedule[mid-1].time.end) < curr.getTime() && curr.getTime() < Date.parse(schedule[mid].time.start)) {
+            index = mid;
         }
         $(".arrows").children().css("color", $(":root").css("--bg-grey"));
-        if(idx != -1) {
-            $(".arrows").children().eq(idx).css("color", $(":root").css("--gold"));
+        if(index != -1) {
+            $(".arrows").children().eq(index).css("color", $(":root").css("--gold"));
         }
-        if(idx == -1) {
+        if(index == -1) {
             if(curr.getTime() < Date.parse(schedule[0].time.start) && curr.getDate() == new Date(Date.parse(schedule[0].time.start)).getDate()) {
                 var next = new Date(Date.parse(schedule[0].time.start));
                 var hr = next.getHours() - curr.getHours();
@@ -142,10 +142,10 @@ function updateSchedule() {
             }
         } else {
             var next;
-            if(idx == mid) {
+            if(index == mid) {
                 next = new Date(Date.parse(schedule[mid].time.start));
             } else {
-                next = new Date(Date.parse(schedule[(idx < mid ? idx : idx-1)].time.end));
+                next = new Date(Date.parse(schedule[(index < mid ? index : index-1)].time.end));
             }
             var hr = next.getHours() - curr.getHours();
             var min = next.getMinutes() - curr.getMinutes();
@@ -155,7 +155,7 @@ function updateSchedule() {
             }
             var hours = (hr > 0 ? `${hr} hour${hr != 1 ? "s" : ""} and ` : "");
             var minutes = `${min} minute${min != 1 ? "s" : ""}`;
-            $("#next-period").text((idx == schedule.length ? "School" : (idx == mid ? "Lunch" : "Period")) + ` ends in ${hours}${minutes}`);
+            $("#next-period").text((index == schedule.length ? "School" : (index == mid ? "Lunch" : "Period")) + ` ends in ${hours}${minutes}`);
         }
     } catch(err) {}
 }
