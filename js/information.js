@@ -170,7 +170,7 @@ function setWeather() {
         $("#w-icon").attr("src", `https://www.accuweather.com/images/weathericons/${weather.WeatherIcon}.svg`);
         $("#temp").text(`${weather.Temperature.Metric.Value.toFixed(1)}°C`)
     }).catch(() => {
-        $("$w-icon").hide();
+        $("#w-icon").hide();
         $("#temp").text("Weather Unavailable");
     });
 }
