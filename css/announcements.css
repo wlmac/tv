@@ -20,6 +20,10 @@ date {
     font-weight: 300;
     color: var(--mid-grey);
 }
+#qrcode {
+    flex: 0 0 96px;
+    margin-left: 15px;
+}
 .scrollable::-webkit-scrollbar {
     display: none;
 }
