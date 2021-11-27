@@ -35,7 +35,7 @@ function setDate() {
     pr.then(() => {
         updateSchedule();
     }).catch(() => {
-        $("#cycle").css("padding-bottom", "0.4rem");
+        $("#cycle").css("padding-bottom", "0");
         $("#cycle").text("Something went wrong :(");
         $(".arrows").empty();
         $(".periods").empty();
