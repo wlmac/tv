@@ -2,6 +2,9 @@
     display: flex;
     justify-content: space-between;
 }
+.info {
+    flex: 1;
+}
 #title {
     margin: 0;
     padding: 0;
@@ -28,9 +31,10 @@ date {
     justify-content: end;
 }
 #qrinfo {
-    margin-left: 15px;
     text-align: right;
     font-size: 1.2rem;
+    flex: 1 0 72px;
+    margin-left: 15px;
 }
 #qrcode {
     flex: 0 0 96px;
