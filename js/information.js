@@ -143,7 +143,7 @@ function setWeather() {
     var weather;
     new Promise((resolve, reject) => {
         var apikey = localStorage.getItem("accuweather-api-key");    
-        $.getJSON(`http://dataservice.accuweather.com/currentconditions/v1/49569?apikey=${apikey}`, function(wth) {
+        $.getJSON(`https://dataservice.accuweather.com/currentconditions/v1/49569?apikey=${apikey}`, function(wth) {
             if(wth == undefined) {
                 reject();
             }
