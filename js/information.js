@@ -15,7 +15,7 @@ function setDate() {
     var sec = today.getSeconds();
     var period = "AM";
     ms = ms = today.getMilliseconds();
-    if(hr % 4 == 0 && sec == 0) {
+    if(hr % 4 == 0 && min == 0 && sec == 0) {
         setWeather();
     }
     if(min < 10) {
