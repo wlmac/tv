@@ -172,7 +172,6 @@ function setWeather() {
                 resolve();
             }).fail(() => {
                 reject();
-                console.log('asdf');
             });
         } catch(err) {
             reject();
