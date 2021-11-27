@@ -75,7 +75,9 @@ function setAnnouncement() {
             breaks: true
         });
         $("#announcement-body").html(marked.parse(post.body.replaceAll("/media/", "https://maclyonsden.com/media/")));
+        $("#qrinfo").empty();
         $("#qrcode").empty();
+        $("#qrinfo").html("Scan to<br>see on site");
         const qrcode = new QRCode(document.getElementById("qrcode"), {
             text: `https://maclyonsden.com/announcement/${post.id}`,
             width: 96,

@@ -19,6 +19,17 @@
 date {
     font-weight: 300;
     color: var(--mid-grey);
+
+}
+.qr {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+#qrinfo {
+    margin-left: 15px;
+    text-align: right;
+    font-size: 1.2rem;
 }
 #qrcode {
     flex: 0 0 96px;
