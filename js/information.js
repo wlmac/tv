@@ -12,8 +12,12 @@ function setDate() {
     var date = today.getDate();
     var hr = today.getHours();
     var min = today.getMinutes();
+    var sec = today.getSeconds();
     var period = "AM";
     ms = ms = today.getMilliseconds();
+    if(hr % 4 == 0 && sec == 0) {
+        setWeather();
+    }
     if(min < 10) {
         min = "0"+min;
     }
@@ -39,7 +43,6 @@ function setDate() {
     });
     if(pdate != date) {
         setSchedule();
-        setWeather();
         pdate = date;
     }
 }
@@ -139,17 +142,18 @@ function updateSchedule() {
 function setWeather() {
     var weather;
     new Promise((resolve, reject) => {
-        $.getJSON("https://www.metaweather.com/api/location/4118/", function(wth) {
+        var apikey = localStorage.getItem("accuweather-api-key");    
+        $.getJSON(`http://dataservice.accuweather.com/currentconditions/v1/49569?apikey=${apikey}`, function(wth) {
             if(wth == undefined) {
                 reject();
             }
-            weather = wth.consolidated_weather[0];
+            weather = wth[0];
             resolve();
         });
     }).then(() => {
         $("#w-icon").show();
-        $("#w-icon").attr("src", `https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`);
-        $("#temp").text(`${Math.floor(weather.min_temp)}°C/${Math.ceil(weather.max_temp)}°C`)
+        $("#w-icon").attr("src", `https://www.accuweather.com/images/weathericons/${weather.WeatherIcon}.svg`);
+        $("#temp").text(`${weather.Temperature.Metric.Value.toFixed(1)}°C`)
     }).catch(() => {
         $("$w-icon").hide();
         $("#temp").text("Weather Unavailable");
