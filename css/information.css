@@ -15,6 +15,7 @@
 }
 #cycle {
     padding: 0 2.5rem;
+    padding-bottom: 0.4rem;
     font-weight: 600;
     font-size: 1.5rem;
     color: var(--dark-blue);
@@ -27,7 +28,7 @@
 }
 .schedule {
     padding: 1.5rem 2.5rem;
-    padding-top: 0.4rem;
+    padding-top: 0;
     display: flex;
     justify-content: space-between;
 }

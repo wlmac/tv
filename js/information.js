@@ -35,6 +35,7 @@ function setDate() {
     pr.then(() => {
         updateSchedule();
     }).catch(() => {
+        $("#cycle").css("padding-bottom", "0.4rem");
         $("#cycle").text("Something went wrong :(");
         $(".arrows").empty();
         $(".periods").empty();
@@ -59,7 +60,9 @@ function setSchedule() {
                     }
                     schedule = sched;
                     var today = new Date();
+                    $("#cycle").css("padding-bottom", "0.4rem");
                     if(today.getDay() == 0 || today.getDay() == 6) {
+                        $("#cycle").css("padding-bottom", "0");
                         $("#cycle").text("Weekend");
                         $(".arrows").empty();
                         $(".periods").empty();
