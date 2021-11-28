@@ -159,7 +159,7 @@ function setAnnouncement() {
         $("#qrinfo").empty();
         $("#qrcode").empty();
         // Sets QR code
-        $("#qrinfo").html("Scan to see<br>on site");
+        $("#qrinfo").html("Scan to<br>see on<br>site");
         const qrcode = new QRCode(document.getElementById("qrcode"), {
             text: `https://maclyonsden.com/announcement/${post.id}`,
             width: 96,
