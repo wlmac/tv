@@ -72,7 +72,7 @@ function getAnnouncements() {
                     range.setDate(range.getDate()-5); // Sets range to 5 days ago
 
                     // Find oldest announcement in range
-                    for(index = 0; index < announce.length; i++) {
+                    for(index = 0; index < announce.length; index++) {
                         if(Date.parse(announce[index].last_modified_date) < range.getTime()) {
                             break;
                         }
