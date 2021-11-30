@@ -1,4 +1,12 @@
 /**
+ * Fullscreens page when button clicked
+ * @author      Eric Shim
+ * @author      Project Metropolis
+ * @version     1.0.1
+ * @since       1.0.0
+ */
+
+/**
  * Runs on page load
  */
 $(document).ready(function() {
