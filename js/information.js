@@ -2,7 +2,7 @@
  * Sets informational details on the site such as datetime
  * @author      Eric Shim
  * @author      Project Metropolis
- * @version     1.8.4
+ * @version     1.8.5
  * @since       1.0.0
  */
 
@@ -63,6 +63,10 @@ function setDate() {
     /** @type {string} */
     var period = "AM";
 
+    // Checks site version every 6th hour
+    if(hr % 6 == 0 && min == 0 && sec == 0) {
+        updateVersion();
+    }
     // Sets the weather every 4th hour
     if(hr % 4 == 0 && min == 0 && sec == 0) {
         setWeather();
