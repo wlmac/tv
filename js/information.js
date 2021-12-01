@@ -63,8 +63,8 @@ function setDate() {
     /** @type {string} */
     var period = "AM";
 
-    // Checks site version every 12:30
-    if(hr % 12 == 0 && min == 30 && sec == 0) {
+    // Checks site version every 6 hours from 12:30
+    if(hr >= 12 && hr % 6 == 0 && min == 30 && sec == 0) {
         updateVersion();
     }
     // Sets the weather every 4th hour
