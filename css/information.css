@@ -41,7 +41,7 @@
     color: var(--mid-grey);
 }
 #qrcode {
-    flex: 0 0 96px;
+    flex: 0 0 130px;
 }
 .schedule {
     padding: 1.5rem 2.5rem;
