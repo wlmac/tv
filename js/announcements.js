@@ -2,7 +2,7 @@
  * Sets announcements on the site
  * @author      Eric Shim
  * @author      Project Metropolis
- * @version     1.1.4
+ * @version     1.1.5
  * @since       1.0.0
  */
 
@@ -159,11 +159,11 @@ function setAnnouncement() {
         $("#qrinfo").empty();
         $("#qrcode").empty();
         // Sets QR code
-        $("#qrinfo").html("Scan to<br>see on<br>site");
+        $("#qrinfo").html("Scan to see<br>on site");
         const qrcode = new QRCode(document.getElementById("qrcode"), {
             text: `https://maclyonsden.com/announcement/${post.id}`,
-            width: 96,
-            height: 96,
+            width: 130,
+            height: 130,
             colorDark : '#000',
             colorLight : '#fff',
             correctLevel : QRCode.CorrectLevel.H

@@ -3,7 +3,7 @@
     padding: 0;
 }
 .date-time {
-    padding: 1rem 2.5rem;
+    padding: 2.5rem;
     padding-bottom: 0;
 }
 #day-type {
@@ -25,6 +25,23 @@
     font-weight: 300;
     font-size: 1.2rem;
     color: var(--dark-grey);
+}
+.qr {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 1rem 2.5rem;
+    padding-top: 0;
+}
+#qrinfo {
+    text-align: left;
+    font-size: 1.2rem;
+    flex: 1 0 72px;
+    margin-left: 15px;
+    color: var(--mid-grey);
+}
+#qrcode {
+    flex: 0 0 96px;
 }
 .schedule {
     padding: 1.5rem 2.5rem;

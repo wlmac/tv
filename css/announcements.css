@@ -25,22 +25,6 @@ date {
     color: var(--mid-grey);
 
 }
-.qr {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-}
-#qrinfo {
-    text-align: right;
-    font-size: 1.2rem;
-    flex: 1 0 72px;
-    margin-left: 15px;
-    color: var(--mid-grey);
-}
-#qrcode {
-    flex: 0 0 96px;
-    margin-left: 15px;
-}
 .scrollable::-webkit-scrollbar {
     display: none;
 }
