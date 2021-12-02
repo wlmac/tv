@@ -35,7 +35,7 @@ body {
     background-color: var(--bg-grey);
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
 }
 .footer {
     width: 100vw;
