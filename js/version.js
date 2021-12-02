@@ -1,6 +1,7 @@
 /**
  * Compares site version to local version and refreshes if needed
  * @author      Eric Shim
+ * @author      Ken Shibata
  * @author      Project Metropolis
  * @version     1.0.0
  * @since       1.0.0

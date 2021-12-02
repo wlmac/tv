@@ -351,7 +351,8 @@ async function getWeather() {
   }
   // Gets current weather data from weather API
   fetch(
-    `https://dataservice.accuweather.com/currentconditions/v1/49569?apikey=${apikey}`)
+    `https://dataservice.accuweather.com/currentconditions/v1/49569?apikey=${apikey}`
+  )
     .then((resp) => {
       if (!resp.ok) {
         throw new Error(`resp not ok: ${resp}`);
@@ -359,13 +360,12 @@ async function getWeather() {
       return resp;
     })
     .then((resp) => resp.json())
-	.then(   (wth) {
+    .then((wth) => {
       if (wth.length == 0) {
         throw new Error("API returned not enough data"); // Reject promise if nothing returned
       }
       return wth[0]; // Resolve promise if all succeeds
-    }
-  );
+    });
 }
 
 /**

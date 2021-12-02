@@ -78,7 +78,7 @@ hr {
   border: 0px solid var(--line-grey);
   border-top-width: 2px;
 }
-.fullscreen-btn {
+#fullscreen-btn {
   position: fixed;
   width: 10rem;
   height: 3rem;
@@ -93,12 +93,12 @@ hr {
   cursor: pointer;
   animation: fade-in 0.6s ease-out;
 }
-.fullscreen-btn p {
+#fullscreen-btn p {
   font-weight: 300;
   font-size: 1.2rem;
   line-height: 1.95;
 }
-.fullscreen-btn span {
+#fullscreen-btn span {
   font-weight: 300;
   font-size: 1.2rem;
   line-height: 1.95;
@@ -115,7 +115,7 @@ hr {
   }
 }
 @media all and (display-mode: fullscreen) {
-  .fullscreen-btn {
+  #fullscreen-btn {
     display: none;
   }
 }
