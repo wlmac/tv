@@ -45,11 +45,6 @@ var schedule;
  * @type {number}
  */
 var pdate = 0;
-/**
- * Stores promise
- * @type {Promise}
- */
-var s_pr;
 
 /**
  * Sets the date and time and calls various other information setting functions
@@ -103,7 +98,7 @@ function setDate() {
   $("#date").text(`${day}, ${month} ${date}`);
   $("#time").text(`${hr}:${min} ${period}`);
 
-  s_pr
+  getSchedule()
     .then(() => {
       // Updates the schedule once the promise is resolved
       updateSchedule();
@@ -121,98 +116,81 @@ function setDate() {
 
   // Resets schedule on a new day
   if (pdate != date) {
-    setSchedule();
+    getSchedule();
     pdate = date;
   }
 }
 
-/**
- * Sets the schedule
- */
-function setSchedule() {
-  // Sets new promise
-  s_pr = new Promise((resolve, reject) => {
-    try {
-      // Gets the current term from the API
-      $.getJSON("https://maclyonsden.com/api/term/current", function (term) {
-        if (term === undefined) {
-          reject(); // Reject promise if nothing returned
-        }
-        // Gets the current term schedule from the API
-        $.getJSON(
-          `https://maclyonsden.com/api/term/${term.id}/schedule`,
-          function (sched) {
-            if (sched === undefined) {
-              reject(); // Reject promise if nothing returned
-            }
-
-            schedule = sched;
-            var today = new Date();
-
-            if (today.getDay() == 0 || today.getDay() == 6) {
-              // Sets schedule information on weekends
-              $("#cycle").css("padding-bottom", "0");
-              $("#cycle").text("Weekend");
-              // Clears previous information
-              $(".arrows").empty();
-              $(".periods").empty();
-              $(".start-times").empty();
-              // Sets no school message
-              $("#next-period").text("No school today");
-            } else {
-              // Sets schedule cycle
-              $("#cycle").css("padding-bottom", "0.4rem");
-              $("#cycle").text(schedule[0].cycle);
-              // Clears previous information
-              $(".arrows").empty();
-              $(".periods").empty();
-              $(".start-times").empty();
-              $("#next-period").text("No schedule loaded"); // Default
-              // Sets periods' name and time
-              for (var i = 0; i < schedule.length; i++) {
-                /** @type {string} */
-                var time;
-                // Accounts for lunch period
-                if (i == ~~(schedule.length / 2) && i > 0) {
-                  //Sets lunch period information
-                  time = schedule[i - 1].description.time;
-                  time = time.slice(time.lastIndexOf("-") + 1).trim();
-                  $(".arrows").append(
-                    `<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`
-                  );
-                  $(".periods").append(`<h3>Lunch</h3>`);
-                  $(".start-times").append(
-                    `<h4>${time.replace(/^0+/, "")}</h4>`
-                  );
-                }
-                // Sets period information
-                time = schedule[i].description.time;
-                time = time.slice(0, time.indexOf("-")).trim();
+async function getSchedule() {
+  await fetch("https://maclyonsden.com/api/term/current")
+    .then((resp) => {
+      if (!resp.ok) {
+        throw new Error(`resp not ok: ${resp}`);
+      }
+      return resp;
+    })
+    .then((resp) => resp.json())
+    .then(async (term) => {
+      await fetch(`https://maclyonsden.com/api/term/${term.id}/schedule`)
+        .then((resp) => {
+          if (!resp.ok) {
+            throw new Error(`resp not ok: ${resp}`);
+          }
+          return resp;
+        })
+        .then((resp) => resp.json())
+        .then((sched) => {
+          schedule = sched;
+          today = new Date();
+          if (today.getDay() == 0 || today.getDay() == 6) {
+            // Sets schedule information on weekends
+            $("#cycle").css("padding-bottom", "0");
+            $("#cycle").text("Weekend");
+            // Clears previous information
+            $(".arrows").empty();
+            $(".periods").empty();
+            $(".start-times").empty();
+            // Sets no school message
+            $("#next-period").text("No school today");
+          } else {
+            // Sets schedule cycle
+            $("#cycle").css("padding-bottom", "0.4rem");
+            $("#cycle").text(schedule[0].cycle);
+            // Clears previous information
+            $(".arrows").empty();
+            $(".periods").empty();
+            $(".start-times").empty();
+            $("#next-period").text("No schedule loaded"); // Default
+            // Sets periods' name and time
+            for (var i = 0; i < schedule.length; i++) {
+              /** @type {string} */
+              var time;
+              // Accounts for lunch period
+              if (i == ~~(schedule.length / 2) && i > 0) {
+                //Sets lunch period information
+                time = schedule[i - 1].description.time;
+                time = time.slice(time.lastIndexOf("-") + 1).trim();
                 $(".arrows").append(
                   `<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`
                 );
-                $(".periods").append(
-                  `<h3>${schedule[i].description.course}</h3>`
-                );
+                $(".periods").append(`<h3>Lunch</h3>`);
                 $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
-                $(".arrows")
-                  .children()
-                  .css("color", $(":root").css("--bg-grey"));
               }
+              // Sets period information
+              time = schedule[i].description.time;
+              time = time.slice(0, time.indexOf("-")).trim();
+              $(".arrows").append(
+                `<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`
+              );
+              $(".periods").append(
+                `<h3>${schedule[i].description.course}</h3>`
+              );
+              $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+              $(".arrows").children().css("color", $(":root").css("--bg-grey"));
             }
-
-            resolve(); // Resolve promise if all succeeds
           }
-        ).fail(() => {
-          reject(); // Reject promise if API request fails
         });
-      }).fail(() => {
-        reject(); // Reject promise if API request fails
-      });
-    } catch (err) {
-      reject(); // Reject promise if error is thrown
-    }
-  });
+    });
 }
 
 /**
@@ -392,7 +370,7 @@ async function getWeather() {
  * Runs on page load
  */
 $(document).ready(function () {
-  setSchedule();
+  getSchedule();
   setWeather();
   setDate();
   // Updates datetime every 500 ms after waiting until next second

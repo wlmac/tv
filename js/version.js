@@ -9,36 +9,25 @@
 /**
  * Checks site version and updates
  */
-function updateVersion() {
-  var version;
-  var current = localStorage.getItem("site-version");
-  new Promise((resolve, reject) => {
-    try {
-      $.getJSON(`https://${location.host}/version.json`, function (ver) {
-        if (ver === undefined) {
-          reject();
-        }
-        version = ver.version;
-        resolve();
-      }).fail(() => {
-        reject();
-      });
-    } catch (err) {
-      reject();
-    }
-  })
-    .then(() => {
-      if (version != current) {
-        localStorage.setItem("site-version", version);
+async function updateVersion() {
+  await fetch(`https://${location.host}/version.json`)
+    .then((resp) => {
+      if (!resp.ok) {
+        throw new Error(`resp not ok: ${resp}`);
+      }
+      return resp;
+    })
+    .then((resp) => resp.json())
+    .then(async (ver) => {
+      const current = localStorage.getItem("site-version");
+      if (ver.version != current) {
+        localStorage.setItem("site-version", ver.version);
         location.reload();
       }
-    })
-    .catch(() => {});
+    });
 }
 
 /**
  * Runs on page load
  */
-$(document).ready(function () {
-  updateVersion();
-});
+$(document).ready(updateVersion);

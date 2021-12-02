@@ -49,7 +49,7 @@ async function getAnnouncements() {
       return resp;
     })
     .then((resp) => resp.json())
-    .then(async(orgs) => {
+    .then(async (orgs) => {
       if (orgs === undefined) {
         throw new Error("API request (for organizations) returned nothing");
       }
