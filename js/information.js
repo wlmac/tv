@@ -2,7 +2,7 @@
  * Sets informational details on the site such as datetime
  * @author      Eric Shim
  * @author      Project Metropolis
- * @version     1.8.6
+ * @version     1.8.7
  * @since       1.0.0
  */
 
@@ -325,7 +325,7 @@ function setWeather() {
     }).then(() => {
         // Sets weather data once the promise is resolved
         $("#w-icon").show();
-        $("#w-icon").attr("src", `https://www.accuweather.com/images/weathericons/${weather.WeatherIcon}.svg`);
+        $("#w-icon").attr("src", `img/weathericons/${weather.WeatherIcon}.svg`);
         $("#temp").text(`${weather.Temperature.Metric.Value.toFixed(1)}°C`)
     }).catch(() => {
         // Otherwise hide the weather data
