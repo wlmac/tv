@@ -1,5 +1,6 @@
 /**
  * Sets informational details on the site such as datetime
+ * @author      Ken Shibata
  * @author      Eric Shim
  * @author      Project Metropolis
  * @version     1.8.7
@@ -107,7 +108,7 @@ function setDate() {
       // Updates the schedule once the promise is resolved
       updateSchedule();
     })
-    .catch(() => {
+    .catch((err) => {
       // Otherwise sets the error message
       $("#cycle").css("padding-bottom", "0");
       $("#cycle").text("Something went wrong :(");
@@ -115,6 +116,7 @@ function setDate() {
       $(".periods").empty();
       $(".start-times").empty();
       $("#next-period").text("No schedule loaded");
+      console.error(`schedule fetch failed: ${err}`);
     });
 
   // Resets schedule on a new day
