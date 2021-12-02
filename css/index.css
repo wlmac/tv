@@ -23,7 +23,7 @@ body {
 .announcements {
   width: calc(70vw - 6rem);
   height: calc(88vh - 6rem);
-  padding: 3rem;
+  padding: 2rem;
   background-color: white;
   display: flex;
   flex-direction: column;
