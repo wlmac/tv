@@ -21,11 +21,6 @@ var clubs;
  * @type {number}
  */
 var idx = 0;
-/**
- * Stores promise
- * @type {Promise}
- */
-var a_pr;
 
 /**
  * Returns a club's name based on its ID
@@ -43,65 +38,47 @@ function getClub(id) {
 /**
  * Gets announcement list
  */
-function getAnnouncements() {
-  // Sets a new promise
-  a_pr = new Promise((resolve, reject) => {
-    try {
-      // Gets the club list from the API
-      $.getJSON("https://maclyonsden.com/api/organizations", function (orgs) {
-        if (orgs === undefined) {
-          reject(); // Reject promise if nothing returned
-        }
-
-        clubs = orgs;
-
-        // Gets the announcement list from the API
-        $.getJSON(
-          "https://maclyonsden.com/api/announcements",
-          function (announce) {
-            if (announce === undefined) {
-              reject(); // Reject promise if nothing returned
-            }
-
-            /** @type {number} */
-            var index = 0;
-            /**
-             * Limits how old the announcements are
-             * @type {Object}
-             */
-            var range = new Date();
-            range.setDate(range.getDate() - 5); // Sets range to 5 days ago
-
-            // Find oldest announcement in range
-            for (index = 0; index < announce.length; index++) {
-              if (
-                Date.parse(announce[index].last_modified_date) < range.getTime()
-              ) {
-                break;
-              }
-            }
-
-            // Sets new announcement list within range
-            announcements = announce.slice(0, index + 2);
-
-            // Caps announcement list length at 8
-            if (announcements.length > 8) {
-              announcements = announcements.slice(0, 8);
-            }
-
-            console.log("API Call");
-            resolve(); // Resolve promise if all succeeds
-          }
-        ).fail(() => {
-          reject(); // Reject promise if API request fails
-        });
-      }).fail(() => {
-        reject(); // Reject promise if API request fails
-      });
-    } catch (err) {
-      console.log(err);
-      reject(); // Reject promise if error is thrown
+async function getAnnouncements() {
+  // Gets the club list from the API
+  $.getJSON("https://maclyonsden.com/api/organizations", (orgs) => {
+    if (orgs === undefined) {
+      throw new Error("API request (for organizations) returned nothing");
     }
+
+    clubs = orgs;
+
+    // Gets the announcement list from the API
+    $.getJSON("https://maclyonsden.com/api/announcements", (announce) => {
+      if (announce === undefined) {
+        throw new Error("API request (for announcement) returned nothing");
+      }
+
+      /** @type {number} */
+      var index = 0;
+      /**
+       * Limits how old the announcements are
+       * @type {Object}
+       */
+      var range = new Date();
+      range.setDate(range.getDate() - 5); // Sets range to 5 days ago
+
+      // Find oldest announcement in range
+      for (index = 0; index < announce.length; index++) {
+        if (Date.parse(announce[index].last_modified_date) < range.getTime()) {
+          break;
+        }
+      }
+
+      // Sets new announcement list within range
+      announcements = announce.slice(0, index + 2);
+
+      // Caps announcement list length at 8
+      if (announcements.length > 8) {
+        announcements = announcements.slice(0, 8);
+      }
+
+      return;
+    });
   });
 }
 
@@ -188,9 +165,8 @@ function setAnnouncement() {
 /**
  * Runs on page load
  */
-$(document).ready(function () {
-  getAnnouncements();
-  a_pr
+$(document).ready(() => {
+  getAnnouncements()
     .then(() => {
       // Sets the announcement once the promise is resolved
 

@@ -125,6 +125,78 @@ function setDate() {
 }
 
 /**
+ * Gets the schedule
+ */
+async function setSchedule() {
+  // Gets the current term from the API
+  $.getJSON("https://maclyonsden.com/api/term/current", (term) => {
+    if (term === undefined) {
+      throw new Error("API request (for term) returned nothing");
+    }
+    // Gets the current term schedule from the API
+    $.getJSON(
+      `https://maclyonsden.com/api/term/${term.id}/schedule`,
+      (sched) => {
+        if (sched === undefined) {
+          throw new Error("API request (for schedule) returned nothing");
+          schedule = sched;
+        }
+        var today = new Date();
+        if (today.getDay() == 0 || today.getDay() == 6) {
+          // Sets schedule information on weekends
+          $("#cycle").css("padding-bottom", "0");
+          $("#cycle").text("Weekend");
+          // Clears previous information
+          $(".arrows").empty();
+          $(".periods").empty();
+          $(".start-times").empty();
+          // Sets no school message
+          $("#next-period").text("No school today");
+        } else {
+          // Sets schedule cycle
+          $("#cycle").css("padding-bottom", "0.4rem");
+          $("#cycle").text(schedule[0].cycle);
+          // Clears previous information
+          $(".arrows").empty();
+          $(".periods").empty();
+          $(".start-times").empty();
+          $("#next-period").text("No schedule loaded"); // Default
+          // Sets periods' name and time
+          for (var i = 0; i < schedule.length; i++) {
+            /** @type {string} */
+            var time;
+            // Accounts for lunch period
+            if (i == ~~(schedule.length / 2) && i > 0) {
+              //Sets lunch period information
+              time = schedule[i - 1].description.time;
+              time = time.slice(time.lastIndexOf("-") + 1).trim();
+              $(".arrows").append(
+                `<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`
+              );
+              $(".periods").append(`<h3>Lunch</h3>`);
+              $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+              // Sets period information
+              time = schedule[i].description.time;
+              time = time.slice(0, time.indexOf("-")).trim();
+              $(".arrows").append(
+                `<h3><span class="material-icons">keyboard_double_arrow_right</span></h3>`
+              );
+              $(".periods").append(
+                `<h3>${schedule[i].description.course}</h3>`
+              );
+              $(".start-times").append(`<h4>${time.replace(/^0+/, "")}</h4>`);
+              $(".arrows").children().css("color", $(":root").css("--bg-grey"));
+            }
+          }
+
+          return;
+        }
+      }
+    );
+  });
+}
+
+/**
  * Sets the schedule
  */
 function setSchedule() {
