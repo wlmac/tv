@@ -10,7 +10,7 @@
  * Gets the root element of the document
  * @type {HTML Object}
  */
-var elem = document.documentElement;
+let elem = document.documentElement;
 // Fullscreens the page on button click
 document.getElementById("fullscreen-btn").addEventListener("click", () => {
   if (elem.requestFullscreen) {

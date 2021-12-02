@@ -11,17 +11,17 @@
  * Stores announcements as an array of objects
  * @type {(Object|Array.)}
  */
-var announcements;
+let announcements;
 /**
  * Stores clubs as an array of objects
  * @type {(Object|Array.)}
  */
-var clubs;
+let clubs;
 /**
  * Stores announcement index
  * @type {number}
  */
-var idx = 0;
+let idx = 0;
 
 /**
  * Returns a club's name based on its ID
@@ -29,7 +29,7 @@ var idx = 0;
  * @returns {string} Club name
  */
 function getClub(id) {
-  for (var i = 0; i < clubs.length; i++) {
+  for (let i = 0; i < clubs.length; i++) {
     if (clubs[i].id == id) {
       return clubs[i].name;
     }
@@ -69,12 +69,12 @@ async function getAnnouncements() {
           }
 
           /** @type {number} */
-          var index = 0;
+          let index = 0;
           /**
            * Limits how old the announcements are
            * @type {Object}
            */
-          var range = new Date();
+          let range = new Date();
           range.setDate(range.getDate() - 5); // Sets range to 5 days ago
 
           // Find oldest announcement in range
@@ -109,24 +109,24 @@ function setAnnouncement() {
      * Current announcement data
      * @type {Object}
      */
-    var post = announcements[idx];
+    let post = announcements[idx];
     /**
      * Announcement upload datetime
      * @type {Object}
      */
-    var upload = new Date(Date.parse(post.last_modified_date));
+    let upload = new Date(Date.parse(post.last_modified_date));
 
     // Separates upload information into variables
     /** @type {string} */
-    var month = months[upload.getMonth()];
+    let month = months[upload.getMonth()];
     /** @type {number} */
-    var date = upload.getDate();
+    let date = upload.getDate();
     /** @type {number} */
-    var hr = upload.getHours();
+    let hr = upload.getHours();
     /** @type {number} */
-    var min = upload.getMinutes();
+    let min = upload.getMinutes();
     /** @type {string} */
-    var period = "a.m.";
+    let period = "a.m.";
 
     // Next announcement
     idx++;
@@ -196,7 +196,7 @@ async function onLoad() {
   /**
    * Time until next announcement, 3wpm + 5s * img
    */
-  var t = Math.max(
+  let t = Math.max(
     (announcements[idx].body.split(" ").length * 1000) / 3 +
       5000 * (announcements[idx].body.match(/\/media\//g) || []).length,
     5000
@@ -231,11 +231,11 @@ async function onLoad() {
     }
 
     /** @type {HTML Object} */
-    var scrollable = $("#announcement-body");
+    let scrollable = $("#announcement-body");
     scrollable.scrollTop(0); // Sets scrollbar to top
     if (t > 10000) {
       // If announcement timeout is greater than 10s wait 5s before scrolling
-      setTimeout(function () {
+      setTimeout(() => {
         scrollable.animate(
           { scrollTop: scrollable.prop("scrollHeight") },
           t - 10000

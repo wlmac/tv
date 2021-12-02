@@ -34,42 +34,42 @@ const months = [
  * Stores milliseconds since last second
  * @type {number}
  */
-var ms = 0;
+let ms = 0;
 /**
  * Stores periods as an array of objects
  * @type {Object|Array.}
  */
-var schedule;
+let schedule;
 /**
  * Stores yesterday's date of month
  * @type {number}
  */
-var pdate = 0;
+let pdate = 0;
 
 /**
  * Sets the date and time and calls various other information setting functions
  */
 function setDate() {
   /** @type {Object} */
-  var today = new Date();
+  let today = new Date();
 
   // Separates datetime information into variables
   /** @type {string} */
-  var day = days[today.getDay()];
+  let day = days[today.getDay()];
   /** @type {string} */
-  var month = months[today.getMonth()];
+  let month = months[today.getMonth()];
   /** @type {number} */
-  var date = today.getDate();
+  let date = today.getDate();
   /** @type {number} */
-  var hr = today.getHours();
+  let hr = today.getHours();
   /** @type {number} */
-  var min = today.getMinutes();
+  let min = today.getMinutes();
   /** @type {number} */
-  var sec = today.getSeconds();
+  let sec = today.getSeconds();
   /** @type {number} */
   ms = today.getMilliseconds();
   /** @type {string} */
-  var period = "AM";
+  let period = "AM";
 
   // Checks site version every 6 hours from 12:30
   if (hr >= 12 && hr % 6 == 0 && min == 30 && sec == 0) {
@@ -162,9 +162,9 @@ async function getSchedule() {
             $(".start-times").empty();
             $("#next-period").text("No schedule loaded"); // Default
             // Sets periods' name and time
-            for (var i = 0; i < schedule.length; i++) {
+            for (let i = 0; i < schedule.length; i++) {
               /** @type {string} */
-              var time;
+              let time;
               // Accounts for lunch period
               if (i == ~~(schedule.length / 2) && i > 0) {
                 //Sets lunch period information
@@ -201,19 +201,19 @@ function updateSchedule() {
    * Current datetime
    * @type {Object}
    */
-  var curr = new Date();
+  let curr = new Date();
   /** @type {number} */
-  var index = -1;
+  let index = -1;
 
   try {
     /**
      * Middle index, accounts for lunch
      * @type {number}
      */
-    var mid = ~~(schedule.length / 2);
+    let mid = ~~(schedule.length / 2);
 
     // Checks for current period
-    for (var i = 0; i < schedule.length; i++) {
+    for (let i = 0; i < schedule.length; i++) {
       if (
         Date.parse(schedule[i].time.start) < curr.getTime() &&
         curr.getTime() < Date.parse(schedule[i].time.end)
@@ -248,17 +248,17 @@ function updateSchedule() {
          * Starting time of next period
          * @type {Object}
          */
-        var next = new Date(Date.parse(schedule[0].time.start));
+        let next = new Date(Date.parse(schedule[0].time.start));
         /**
          * Remaining hours until next period
          * @type {number}
          */
-        var hr = next.getHours() - curr.getHours();
+        let hr = next.getHours() - curr.getHours();
         /**
          * Remaining minutes until next period
          * @type {number}
          */
-        var min = next.getMinutes() - curr.getMinutes();
+        let min = next.getMinutes() - curr.getMinutes();
 
         // Time formatting
         if (min < 0) {
@@ -270,12 +270,12 @@ function updateSchedule() {
          * Formatted string showing hours
          * @type {string}
          */
-        var hours = hr > 0 ? `${hr} hour${hr != 1 ? "s" : ""} and ` : "";
+        let hours = hr > 0 ? `${hr} hour${hr != 1 ? "s" : ""} and ` : "";
         /**
          * Formatted string showing minutes
          * @type {string}
          */
-        var minutes = `${min} minute${min != 1 ? "s" : ""}`;
+        let minutes = `${min} minute${min != 1 ? "s" : ""}`;
 
         //Sets remaining time until school starts
         $("#next-period").text(`School starts in ${hours}${minutes}`);
@@ -284,7 +284,7 @@ function updateSchedule() {
         $("#next-period").text(`School is over`);
       }
     } else {
-      var next;
+      let next;
 
       // Set next depending on current period, accounts for lunch
       if (index == mid) {
@@ -295,8 +295,8 @@ function updateSchedule() {
         );
       }
 
-      var hr = next.getHours() - curr.getHours();
-      var min = next.getMinutes() - curr.getMinutes();
+      let hr = next.getHours() - curr.getHours();
+      let min = next.getMinutes() - curr.getMinutes();
 
       // Time formatting
       if (min < 0) {
@@ -304,8 +304,8 @@ function updateSchedule() {
         hr--;
       }
 
-      var hours = hr > 0 ? `${hr} hour${hr != 1 ? "s" : ""} and ` : "";
-      var minutes = `${min} minute${min != 1 ? "s" : ""}`;
+      let hours = hr > 0 ? `${hr} hour${hr != 1 ? "s" : ""} and ` : "";
+      let minutes = `${min} minute${min != 1 ? "s" : ""}`;
 
       // Set remaining time until period ends
       $("#next-period").text(
@@ -345,7 +345,7 @@ function setWeather() {
  */
 async function getWeather() {
   /** @type {string} */
-  var apikey = localStorage.getItem("accuweather-api-key");
+  const apikey = localStorage.getItem("accuweather-api-key");
   if (apikey === null) {
     throw new Error("API Key not found");
   }
@@ -371,7 +371,7 @@ async function getWeather() {
 /**
  * Runs on page load
  */
-$(document).ready(function () {
+$(document).ready(() => {
   getSchedule();
   setWeather();
   setDate();
