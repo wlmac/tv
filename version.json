@@ -1,14 +1,14 @@
 {
-    "name": "Metropolis TV",
-    "description": "Informational site to be shown on the TV in the WLMCI school foyer.",
-    "version": "2.8.6",
-    "since": "1.0.0",
-    "authors": [
-        {
-            "name": "Eric Shim"
-        },
-        {
-            "name": "Project Metropolis"
-        }
-    ]
+  "name": "Metropolis TV",
+  "description": "Informational site to be shown on the TV in the WLMCI school foyer.",
+  "version": "2.8.6",
+  "since": "1.0.0",
+  "authors": [
+    {
+      "name": "Eric Shim"
+    },
+    {
+      "name": "Project Metropolis"
+    }
+  ]
 }

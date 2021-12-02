@@ -1,118 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-    font-family: 'Poppins', sans-serif;
-    --bg-grey: #f3f3f3;
-    --line-grey: #bbbbbb;
-    --mid-grey: #939393;
-    --dark-grey: #666666;
-    --darker-grey: #3a3a3a;
-    --dark-blue: #073763;
-    --gold: #977c46;
+  font-family: "Poppins", sans-serif;
+  --bg-grey: #f3f3f3;
+  --line-grey: #bbbbbb;
+  --mid-grey: #939393;
+  --dark-grey: #666666;
+  --darker-grey: #3a3a3a;
+  --dark-blue: #073763;
+  --gold: #977c46;
 }
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 .container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 .announcements {
-    width: calc(70vw - 6rem);
-    height: calc(88vh - 6rem);
-    padding: 3rem;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: calc(70vw - 6rem);
+  height: calc(88vh - 6rem);
+  padding: 3rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .information {
-    width: 30vw;
-    height: 88vh;
-    background-color: var(--bg-grey);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: 30vw;
+  height: 88vh;
+  background-color: var(--bg-grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .footer {
-    width: 100vw;
-    height: 12vh;
-    background-color: var(--dark-blue);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100vw;
+  height: 12vh;
+  background-color: var(--dark-blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 #site-name {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .footer img {
-    height: 10vh;
-    margin: 0 1.4rem;
+  height: 10vh;
+  margin: 0 1.4rem;
 }
 .footer h1 {
-    font-weight: 300;
-    font-size: 3.5vh;
-    color: white;
-    margin: 0;
+  font-weight: 300;
+  font-size: 3.5vh;
+  color: white;
+  margin: 0;
 }
 #weather {
-    display: flex;
-    margin: 0 2.5rem;
-    align-items: center;
+  display: flex;
+  margin: 0 2.5rem;
+  align-items: center;
 }
 #w-icon {
-    height: 8vh;
-    margin-right: 15px;
+  height: 8vh;
+  margin-right: 15px;
 }
 #temp {
-    font-weight: 400;
+  font-weight: 400;
 }
 hr {
-    border: 0px solid var(--line-grey);
-    border-top-width: 2px;
+  border: 0px solid var(--line-grey);
+  border-top-width: 2px;
 }
 .fullscreen-btn {
-    position: fixed;
-    width: 10rem;
-    height: 3rem;
-    background-color: var(--dark-blue);
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--mid-grey);
-    left: calc(50vw - 5rem);
-    top: 25px;
-    cursor: pointer;
-    animation: fade-in 0.6s ease-out;
+  position: fixed;
+  width: 10rem;
+  height: 3rem;
+  background-color: var(--dark-blue);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--mid-grey);
+  left: calc(50vw - 5rem);
+  top: 25px;
+  cursor: pointer;
+  animation: fade-in 0.6s ease-out;
 }
 .fullscreen-btn p {
-    font-weight: 300;
-    font-size: 1.2rem;
-    line-height: 1.95;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.95;
 }
 .fullscreen-btn span {
-    font-weight: 300;
-    font-size: 1.2rem;
-    line-height: 1.95;
-    margin-right: 5px;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.95;
+  margin-right: 5px;
 }
 @keyframes fade-in {
-    0% {
-        top: 0;
-        opacity: 0;
-    }
-    100% {
-        top: 25px;
-        opacity: 1;
-    }
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  100% {
+    top: 25px;
+    opacity: 1;
+  }
 }
 @media all and (display-mode: fullscreen) {
-    .fullscreen-btn {
-        display: none;
-    }
+  .fullscreen-btn {
+    display: none;
+  }
 }

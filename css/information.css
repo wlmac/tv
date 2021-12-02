@@ -1,83 +1,83 @@
 .information * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 .date-time {
-    padding: 2.5rem;
-    padding-bottom: 0;
+  padding: 2.5rem;
+  padding-bottom: 0;
 }
 #day-type {
-    padding: 0.8rem 2.5rem;
-    padding-top: 0;
-    font-weight: 300;
-    font-size: 1.8rem;
-    color: var(--dark-blue);
+  padding: 0.8rem 2.5rem;
+  padding-top: 0;
+  font-weight: 300;
+  font-size: 1.8rem;
+  color: var(--dark-blue);
 }
 #cycle {
-    padding: 0 2.5rem;
-    padding-bottom: 0.4rem;
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: var(--dark-blue);
+  padding: 0 2.5rem;
+  padding-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--dark-blue);
 }
 #next-period {
-    padding: 0.8rem 2.5rem;
-    font-weight: 300;
-    font-size: 1.2rem;
-    color: var(--dark-grey);
+  padding: 0.8rem 2.5rem;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: var(--dark-grey);
 }
 .qr {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding: 1rem 2.5rem;
-    padding-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 1rem 2.5rem;
+  padding-top: 0;
 }
 #qrinfo {
-    text-align: left;
-    font-size: 1.2rem;
-    flex: 1 0 72px;
-    margin-left: 15px;
-    color: var(--mid-grey);
+  text-align: left;
+  font-size: 1.2rem;
+  flex: 1 0 72px;
+  margin-left: 15px;
+  color: var(--mid-grey);
 }
 #qrcode {
-    flex: 0 0 130px;
+  flex: 0 0 130px;
 }
 .schedule {
-    padding: 1.5rem 2.5rem;
-    padding-top: 0;
-    display: flex;
-    justify-content: space-between;
+  padding: 1.5rem 2.5rem;
+  padding-top: 0;
+  display: flex;
+  justify-content: space-between;
 }
 .schedule .schedule-wrapper {
-    display: flex;
+  display: flex;
 }
 .date-time h1 {
-    font-weight: 400;
-    font-size: 1.8rem;
+  font-weight: 400;
+  font-size: 1.8rem;
 }
 .date-time h2 {
-    font-weight: 700;
-    font-size: 4.5rem;
+  font-weight: 700;
+  font-size: 4.5rem;
 }
 .schedule .arrows {
-    margin-right: 10px;
-    color: var(--gold);
+  margin-right: 10px;
+  color: var(--gold);
 }
 .schedule h3 {
-    font-weight: 500;
-    font-size: 1.3rem;
-    line-height: 2.1rem;
-    color: var(--darker-grey);
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 2.1rem;
+  color: var(--darker-grey);
 }
 .schedule h4 {
-    font-weight: 300;
-    font-size: 1.3rem;
-    line-height: 2.1rem;
-    text-align: right;
-    color: var(--dark-grey);
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 2.1rem;
+  text-align: right;
+  color: var(--dark-grey);
 }
 .schedule .arrows span {
-    line-height: 2.1rem;
-    float: right;
+  line-height: 2.1rem;
+  float: right;
 }
