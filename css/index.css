@@ -16,6 +16,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+.qr {
+  visibility: hidden;
+}
 .container {
   display: flex;
   flex-direction: row;

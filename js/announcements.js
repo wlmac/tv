@@ -171,7 +171,9 @@ function setAnnouncement() {
       colorLight: "#fff",
       correctLevel: QRCode.CorrectLevel.H,
     });
+    document.getElementById("qr").style.visibility = "visible";
   } catch (err) {
+    document.getElementById("qr").style.visibility = "hidden";
     console.error(err);
   }
 }
