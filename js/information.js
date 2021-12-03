@@ -324,7 +324,7 @@ function updateSchedule() {
  */
 function setWeather() {
   getWeather()
-    .then(() => {
+    .then((weather) => {
       // Sets weather data once the promise is resolved
       $("#w-icon").attr("src", `img/weathericons/${weather.WeatherIcon}.svg`);
       $("#w-icon").show();
