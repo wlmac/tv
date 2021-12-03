@@ -329,7 +329,7 @@ function setWeather() {
       $("#w-icon").attr("src", `img/weathericons/${weather.WeatherIcon}.svg`);
       $("#w-icon").show();
       $("#temp").text(
-        `${Math.round(weather.Temperature.Metric.Value.toFixed(1))}°C`
+        `${Math.round(weather.Temperature.Metric.Value)}°C`
       );
     })
     .catch((err) => {
@@ -350,22 +350,23 @@ async function getWeather() {
     throw new Error("API Key not found");
   }
   // Gets current weather data from weather API
-  fetch(
+  return fetch(
     `https://dataservice.accuweather.com/currentconditions/v1/49569?apikey=${apikey}`
   )
-    .then((resp) => {
-      if (!resp.ok) {
-        throw new Error(`resp not ok: ${resp}`);
-      }
-      return resp;
-    })
-    .then((resp) => resp.json())
-    .then((wth) => {
-      if (wth.length == 0) {
-        throw new Error("API returned not enough data"); // Reject promise if nothing returned
-      }
-      return wth[0]; // Resolve promise if all succeeds
-    });
+  .then((resp) => {
+    if (!resp.ok) {
+      throw new Error(`resp not ok: ${resp}`);
+    }
+    return resp;
+  })
+  .then((resp) => resp.json())
+  .then((wth) => {
+    if (wth.length == 0) {
+      throw new Error("API returned not enough data"); // Reject promise if nothing returned
+    }
+    console.log(wth[0])
+    return wth[0]; // Resolve promise if all succeeds
+  });
 }
 
 /**
