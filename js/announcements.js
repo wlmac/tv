@@ -86,7 +86,6 @@ async function getAnnouncements() {
             }
           }
 
-          console.log(announce);
           // Sets new announcement list within range
           announcements = announce.slice(0, index + 2);
 
@@ -168,7 +167,7 @@ function setAnnouncement() {
       width: 130,
       height: 130,
       colorDark: "#000",
-      colorLight: "#fff",
+      colorLight: $(":root").css("--bg-grey"),
       correctLevel: QRCode.CorrectLevel.H,
     });
     document.getElementById("qrwrap").style.visibility = "visible";
@@ -219,7 +218,6 @@ async function onLoad() {
    * Handles changing and timing of announcements
    */
   function execute() {
-    console.log(announcements);
     console.log(announcements[idx].title);
     console.log(~~(t / 1000));
 
