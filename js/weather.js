@@ -133,7 +133,3 @@ async function setWeatherNow(elem, location) {
 function clearElem(elem) {
   elem.textContent = "";
 }
-
-$(document).ready(() =>
-  setWeatherNow(document.getElementById("weather"), myLocation)
-);

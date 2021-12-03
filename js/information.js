@@ -326,6 +326,7 @@ function updateSchedule() {
  */
 $(document).ready(() => {
   getSchedule();
+  setWeatherNow(document.getElementById("weather"), myLocation);
   setDate();
   // Updates datetime every 500 ms after waiting until next second
   setTimeout(setInterval(setDate, 500), 1000 - ms);
