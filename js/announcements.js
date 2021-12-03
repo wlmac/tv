@@ -160,6 +160,14 @@ function setAnnouncement() {
         post.body.replaceAll("/media/", "https://maclyonsden.com/media/") // TODO: match only URLs
       )
     );
+    let images = $("#announcement-body").find("img");
+    for (let i = 0; i < images.length; i++) {
+      let img = images.eq(i)[0];
+      $("<br>").insertBefore(images.eq(i));
+      if (img.naturalHeight >= img.naturalWidth) {
+        images.eq(i).css("width", "60%");
+      }
+    }
 
     $("#qrcode").empty();
     const qrcode = new QRCode(document.getElementById("qrcode"), {

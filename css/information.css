@@ -31,7 +31,6 @@
   align-items: center;
   justify-content: start;
   padding: 1rem 2.5rem;
-  padding-top: 0;
 }
 #qrinfo {
   text-align: left;
@@ -44,8 +43,7 @@
   flex: 0 0 130px;
 }
 .schedule {
-  padding: 1.5rem 2.5rem;
-  padding-top: 0;
+  padding: 0 2.5rem;
   display: flex;
   justify-content: space-between;
 }
