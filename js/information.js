@@ -77,7 +77,7 @@ function setDate() {
   }
   // Sets the weather every 4th hour
   if (hr % 4 == 0 && min == 0 && sec == 0) {
-    setWeather();
+    setWeatherNow(document.getElementById("weather"), myLocation);
   }
 
   // Time formatting
