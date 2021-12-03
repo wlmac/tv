@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:site_name" content="TV Screen">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="/">
-    <meta name="theme-color" content="#36314a">
-    <meta property="og:title" content="Metropolis TV Screen">
-    <meta name="og:description"
-        content="Informational site to be shown on the TV in the school foyer.">
-    <meta name="og:image" content="img/logo.png">
-    <meta name="author" content="Eric Shim">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:site_name" content="TV Screen" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/" />
+    <meta name="theme-color" content="#36314a" />
+    <meta property="og:title" content="Metropolis TV Screen" />
+    <meta
+      name="og:description"
+      content="Informational site to be shown on the TV in the school foyer."
+    />
+    <meta name="og:image" content="img/logo.png" />
+    <meta name="author" content="Eric Shim and Project Metropolis" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <link rel="icon" type="image/png" size="32x32" href="img/logo.png">
-    <link rel="apple-touch-icon" type="image/png" href="img/logo.png">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet" type="text/css">
-    <link href="css/information.css" rel="stylesheet" type="text/css">
-    <link href="css/announcements.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" size="32x32" href="img/logo.png" />
+    <link rel="apple-touch-icon" type="image/png" href="img/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+    <link href="css/information.css" rel="stylesheet" type="text/css" />
+    <link href="css/announcements.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
@@ -30,69 +38,72 @@
     <script src="js/announcements.js"></script>
     <script src="js/fullscreen.js"></script>
     <title>TV | Metropolis</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Container for announcements and information -->
     <div class="container">
-        <!-- Container for announcements -->
-        <div class="announcements">
-            <!-- Wrapper for announcement headers -->
-            <div class="headers">
-                <!-- Wrapper for announcement title and authoring club -->
-                <div class="info">
-                    <h1 id="title"></h1>
-                    <p id="org"></p>
-                </div>
-            </div>
-            <hr style="margin: 1rem 0 1.5rem 0;">
-            <!-- Wrapper for announcement itself -->
-            <div id="announcement-body" class="scrollable"></div>
+      <!-- Container for announcements -->
+      <div class="announcements">
+        <!-- Wrapper for announcement headers -->
+        <div class="headers">
+          <!-- Wrapper for announcement title and authoring club -->
+          <div class="info">
+            <h1 id="title"></h1>
+            <p id="org"></p>
+          </div>
         </div>
-        <!-- Container for schedule/time information -->
-        <div class="information">
-            <!-- Wrapper for date and time -->
-            <div class="date-time">
-                <h1 id="date"></h1>
-                <h2 id="time"></h2>
-            </div>
-            <hr style="margin: 1.5rem 2.5rem;">
-            <!--h1 id="day-type">Regular Schedule</h1-->
-            <!-- Shows week/day 1/2 -->
-            <h2 id="cycle"></h2>
-            <!-- Wrapper for schedule -->
-            <div class="schedule">
-                <!-- Wrapper for periods and the current period arrows -->
-                <div class="schedule-wrapper">
-                    <div class="arrows"></div>
-                    <div class="periods"></div>
-                </div>
-                <!-- Period start times -->
-                <div class="start-times"></div>
-            </div>
-            <hr style="margin: 0 2.5rem;">
-            <!-- Shows time until next period -->
-            <p id="next-period"></p>
-            <!-- Wrapper for qr code linking to announcement page -->
-            <div class="qr">
-                <div id="qrcode"></div>
-                <p id="qrinfo"></p>
-            </div>
+        <hr style="margin: 1rem 0 1.5rem 0" />
+        <!-- Wrapper for announcement itself -->
+        <div id="announcement-body" class="scrollable"></div>
+      </div>
+      <!-- Container for schedule/time information -->
+      <div class="information">
+        <!-- Wrapper for date and time -->
+        <div class="date-time">
+          <h1 id="date"></h1>
+          <h2 id="time"></h2>
         </div>
+        <hr style="margin: 1.5rem 2.5rem" />
+        <!--h1 id="day-type">Regular Schedule</h1-->
+        <!-- Shows week/day 1/2 -->
+        <h2 id="cycle"></h2>
+        <!-- Wrapper for schedule -->
+        <div class="schedule">
+          <!-- Wrapper for periods and the current period arrows -->
+          <div class="schedule-wrapper">
+            <div class="arrows"></div>
+            <div class="periods"></div>
+          </div>
+          <!-- Period start times -->
+          <div class="start-times"></div>
+        </div>
+        <hr style="margin: 0 2.5rem" />
+        <!-- Shows time until next period -->
+        <p id="next-period"></p>
+        <!-- Wrapper for qr code linking to announcement page -->
+        <div id="qrwrap" class="qr">
+          <div id="qrcode"></div>
+          <p id="qrinfo">Scan to see<br />on site</p>
+        </div>
+      </div>
     </div>
     <!-- Container for footer -->
     <div class="footer">
-        <!-- Metropolis branding -->
-        <div id="site-name">
-            <img src="img/logo-transparent.png">
-            <h1>Metropolis TV</h1>
-        </div>
-        <!-- Current weather status -->
-        <div id="weather">
-            <h1 id="temp"></h1>
-            <img id="w-icon">
-        </div>
+      <!-- Metropolis branding -->
+      <div id="site-name">
+        <img src="img/logo-transparent.png" />
+        <h1>Metropolis TV</h1>
+      </div>
+      <!-- Current weather status -->
+      <div id="weather">
+        <h1 id="temp"></h1>
+        <img id="w-icon" />
+      </div>
     </div>
     <!-- Floating fullscreen button -->
-    <button class="fullscreen-btn"><span class="material-icons">fullscreen</span><p>Fullscreen</p></button>
-</body>
+    <button id="fullscreen-btn">
+      <span class="material-icons">fullscreen</span>
+      <p>Fullscreen</p>
+    </button>
+  </body>
 </html>
