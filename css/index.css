@@ -24,9 +24,10 @@ body {
   flex-direction: row;
 }
 .announcements {
-  width: calc(70vw - 6rem);
-  height: calc(88vh - 6rem);
-  padding: 2rem;
+	--padding: 2rem;
+  width: calc(70vw - 2 * var(--padding));
+  height: calc(88vh - 2 * var(--padding));
+  padding: var(--padding);
   background-color: white;
   display: flex;
   flex-direction: column;
