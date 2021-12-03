@@ -37,6 +37,7 @@
     <script src="js/information.js"></script>
     <script src="js/announcements.js"></script>
     <script src="js/fullscreen.js"></script>
+    <script src="js/weather.js"></script>
     <title>TV | Metropolis</title>
   </head>
   <body>
@@ -74,6 +75,8 @@
             <div class="arrows"></div>
             <div class="periods"></div>
           </div>
+          <!-- Period weather status -->
+          <div class="period-weathers"></div>
           <!-- Period start times -->
           <div class="start-times"></div>
         </div>
@@ -95,10 +98,7 @@
         <h1>Metropolis TV</h1>
       </div>
       <!-- Current weather status -->
-      <div id="weather">
-        <h1 id="temp"></h1>
-        <img id="w-icon" />
-      </div>
+      <div id="weather"></div>
     </div>
     <!-- Floating fullscreen button -->
     <button id="fullscreen-btn">

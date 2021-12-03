@@ -226,9 +226,6 @@ async function onLoad() {
    * Handles changing and timing of announcements
    */
   function execute() {
-    console.log(announcements[idx].title);
-    console.log(~~(t / 1000));
-
     setAnnouncement();
 
     // Get new announcement list after cycle
