@@ -116,6 +116,9 @@ hr {
   }
 }
 @media all and (display-mode: fullscreen) {
+  body {
+    cursor: none;
+  }
   #fullscreen-btn {
     display: none;
   }
