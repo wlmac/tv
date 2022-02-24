@@ -98,25 +98,24 @@ function setDate() {
   $("#date").text(`${day}, ${month} ${date}`);
   $("#time").text(`${hr}:${min} ${period}`);
 
-  getSchedule()
-    .then(() => {
-      // Updates the schedule once the promise is resolved
-      updateSchedule();
-    })
-    .catch((err) => {
-      // Otherwise sets the error message
-      $("#cycle").css("padding-bottom", "0");
-      $("#cycle").text("Something went wrong :(");
-      $(".arrows").empty();
-      $(".periods").empty();
-      $(".start-times").empty();
-      $("#next-period").text("No schedule loaded");
-      console.error(`schedule fetch failed: ${err}`);
-    });
-
   // Resets schedule on a new day
   if (pdate != date) {
-    getSchedule();
+    getSchedule()
+      .then(() => {
+        // Updates the schedule once the promise is resolved
+        updateSchedule();
+        console.log("api req");
+      })
+      .catch((err) => {
+        // Otherwise sets the error message
+        $("#cycle").css("padding-bottom", "0");
+        $("#cycle").text("Something went wrong :(");
+        $(".arrows").empty();
+        $(".periods").empty();
+        $(".start-times").empty();
+        $("#next-period").text("No schedule loaded");
+        console.error(`schedule fetch failed: ${err}`);
+      });
     pdate = date;
   }
 }
@@ -373,7 +372,22 @@ async function getWeather() {
  * Runs on page load
  */
 $(document).ready(() => {
-  getSchedule();
+  getSchedule()
+    .then(() => {
+      // Updates the schedule once the promise is resolved
+      updateSchedule();
+      console.log("api req");
+    })
+    .catch((err) => {
+      // Otherwise sets the error message
+      $("#cycle").css("padding-bottom", "0");
+      $("#cycle").text("Something went wrong :(");
+      $(".arrows").empty();
+      $(".periods").empty();
+      $(".start-times").empty();
+      $("#next-period").text("No schedule loaded");
+      console.error(`schedule fetch failed: ${err}`);
+    });
   setWeather();
   setDate();
   // Updates datetime every 500 ms after waiting until next second
