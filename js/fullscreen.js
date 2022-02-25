@@ -7,25 +7,21 @@
  * @since       1.0.0
  */
 
-function fullscreen() {
+$(document).ready(() => {
   /**
    * Gets the root element of the document
    * @type {HTML Object}
    */
   let elem = document.documentElement;
 
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    elem.webkitRequestFullscreen(); // Chrome, Safari, iOS, Android
-  } else if (elem.msRequestFullscreen) {
-    elem.msRequestFullscreen(); // Internet Explorer
-  }
-}
-
-$(document).ready(() => {
   // Fullscreens the page on button click
   $("#fullscreen-btn").click(() => {
-    fullscreen();
-  });  
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen(); // Chrome, Safari, iOS, Android
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen(); // Internet Explorer
+    }
+  });
 });

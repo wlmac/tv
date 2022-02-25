@@ -77,7 +77,7 @@ function setDate() {
   }
   // Sets the weather every 4th hour
   if (hr % 4 == 0 && min == 0 && sec == 0) {
-    setWeather();
+    setWeatherNow(document.getElementById("weather"), myLocation);
   }
 
   // Time formatting
@@ -319,56 +319,6 @@ function updateSchedule() {
 }
 
 /**
- * Sets current weather conditions
- */
-function setWeather() {
-  getWeather()
-    .then((weather) => {
-      // Sets weather data once the promise is resolved
-      $("#w-icon").attr("src", `img/weathericons/${weather.WeatherIcon}.svg`);
-      $("#w-icon").show();
-      $("#temp").text(
-        `${Math.round(weather.Temperature.Metric.Value)}°C`
-      );
-    })
-    .catch((err) => {
-      // Otherwise hide the weather data
-      $("#w-icon").hide();
-      $("#temp").text("Weather Unavailable");
-      console.error(`weather fetch failed: ${err}`);
-    });
-}
-
-/**
- * Gets current weather conditions
- */
-async function getWeather() {
-  /** @type {string} */
-  const apikey = localStorage.getItem("accuweather-api-key");
-  if (apikey === null) {
-    throw new Error("API Key not found");
-  }
-  // Gets current weather data from weather API
-  return fetch(
-    `https://dataservice.accuweather.com/currentconditions/v1/49569?apikey=${apikey}`
-  )
-  .then((resp) => {
-    if (!resp.ok) {
-      throw new Error(`resp not ok: ${resp}`);
-    }
-    return resp;
-  })
-  .then((resp) => resp.json())
-  .then((wth) => {
-    if (wth.length == 0) {
-      throw new Error("API returned not enough data"); // Reject promise if nothing returned
-    }
-    console.log(wth[0])
-    return wth[0]; // Resolve promise if all succeeds
-  });
-}
-
-/**
  * Runs on page load
  */
 $(document).ready(() => {
@@ -388,7 +338,7 @@ $(document).ready(() => {
       $("#next-period").text("No schedule loaded");
       console.error(`schedule fetch failed: ${err}`);
     });
-  setWeather();
+  setWeatherNow(document.getElementById("weather"), myLocation);
   setDate();
   // Updates datetime every 500 ms after waiting until next second
   setTimeout(setInterval(setDate, 500), 1000 - ms);
