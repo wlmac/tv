@@ -98,11 +98,13 @@ function setDate() {
   $("#date").text(`${day}, ${month} ${date}`);
   $("#time").text(`${hr}:${min} ${period}`);
 
-  if (min == 0 && sec == 0) {
+  // Resets schedule on a new day
+  if (pdate != date) {
     getSchedule()
       .then(() => {
         // Updates the schedule once the promise is resolved
         updateSchedule();
+        console.log("api req");
       })
       .catch((err) => {
         // Otherwise sets the error message
@@ -114,11 +116,6 @@ function setDate() {
         $("#next-period").text("No schedule loaded");
         console.error(`schedule fetch failed: ${err}`);
       });
-  }
-
-  // Resets schedule on a new day
-  if (pdate != date) {
-    getSchedule();
     pdate = date;
   }
 }
@@ -325,7 +322,22 @@ function updateSchedule() {
  * Runs on page load
  */
 $(document).ready(() => {
-  getSchedule();
+  getSchedule()
+    .then(() => {
+      // Updates the schedule once the promise is resolved
+      updateSchedule();
+      console.log("api req");
+    })
+    .catch((err) => {
+      // Otherwise sets the error message
+      $("#cycle").css("padding-bottom", "0");
+      $("#cycle").text("Something went wrong :(");
+      $(".arrows").empty();
+      $(".periods").empty();
+      $(".start-times").empty();
+      $("#next-period").text("No schedule loaded");
+      console.error(`schedule fetch failed: ${err}`);
+    });
   setWeatherNow(document.getElementById("weather"), myLocation);
   setDate();
   // Updates datetime every 500 ms after waiting until next second
