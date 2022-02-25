@@ -97,6 +97,7 @@ function setDate() {
   // Sets datetime information
   $("#date").text(`${day}, ${month} ${date}`);
   $("#time").text(`${hr}:${min} ${period}`);
+  updateSchedule();
 
   // Resets schedule on a new day
   if (pdate != date) {
@@ -278,6 +279,84 @@ function updateSchedule() {
 
         //Sets remaining time until school starts
         $("#next-period").text(`School starts in ${hours}${minutes}`);
+      } else if (
+        schedule.length > 2 &&
+        curr.getTime() < Date.parse(schedule[1].time.start) &&
+        curr.getTime() >= Date.parse(schedule[0].time.end)
+      ) {
+        /**
+         * Starting time of next period
+         * @type {Object}
+         */
+        let next = new Date(Date.parse(schedule[1].time.start));
+        /**
+         * Remaining hours until next period
+         * @type {number}
+         */
+        let hr = next.getHours() - curr.getHours();
+        /**
+         * Remaining minutes until next period
+         * @type {number}
+         */
+        let min = next.getMinutes() - curr.getMinutes();
+
+        // Time formatting
+        if (min < 0) {
+          min = 60 + min;
+          hr--;
+        }
+
+        /**
+         * Formatted string showing hours
+         * @type {string}
+         */
+        let hours = hr > 0 ? `${hr} hour${hr != 1 ? "s" : ""} and ` : "";
+         /**
+          * Formatted string showing minutes
+          * @type {string}
+          */
+        let minutes = `${min} minute${min != 1 ? "s" : ""}`;
+        //Sets remaining time until school starts
+        $("#next-period").text(`Next period in ${hours}${minutes}`);
+      } else if (
+        schedule.length > 2 &&
+        curr.getTime() < Date.parse(schedule[3].time.start) &&
+        curr.getTime() >= Date.parse(schedule[2].time.end)
+      ) {
+        /**
+         * Starting time of next period
+         * @type {Object}
+         */
+        let next = new Date(Date.parse(schedule[3].time.start));
+        /**
+         * Remaining hours until next period
+         * @type {number}
+         */
+        let hr = next.getHours() - curr.getHours();
+        /**
+         * Remaining minutes until next period
+         * @type {number}
+         */
+        let min = next.getMinutes() - curr.getMinutes();
+
+        // Time formatting
+        if (min < 0) {
+          min = 60 + min;
+          hr--;
+        }
+
+        /**
+         * Formatted string showing hours
+         * @type {string}
+         */
+        let hours = hr > 0 ? `${hr} hour${hr != 1 ? "s" : ""} and ` : "";
+         /**
+          * Formatted string showing minutes
+          * @type {string}
+          */
+        let minutes = `${min} minute${min != 1 ? "s" : ""}`;
+        //Sets remaining time until school starts
+        $("#next-period").text(`Next period in ${hours}${minutes}`);
       } else {
         //Sets school over
         $("#next-period").text(`School is over`);
