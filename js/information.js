@@ -3,7 +3,7 @@
  * @author      Ken Shibata
  * @author      Eric Shim
  * @author      Project Metropolis
- * @version     1.8.8
+ * @version     1.9.1
  * @since       1.0.0
  */
 
@@ -71,8 +71,8 @@ function setDate() {
   /** @type {string} */
   let period = "AM";
 
-  // Checks site version every 6 hours from 12:30
-  if (hr >= 12 && hr % 6 == 0 && min == 30 && sec == 0) {
+  // Checks site version every 6 hours
+  if (hr % 6 == 0 && min == 0 && sec == 0) {
     updateVersion();
   }
   // Sets the weather every 4th hour
