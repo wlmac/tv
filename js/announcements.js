@@ -170,14 +170,35 @@ function setAnnouncement() {
     }
 
     $("#qrcode").empty();
-    const qrcode = new QRCode(document.getElementById("qrcode"), {
-      text: `https://maclyonsden.com/announcement/${post.id}`,
-      width: 130,
-      height: 130,
-      colorDark: "#000",
-      colorLight: $(":root").css("--bg-grey"),
-      correctLevel: QRCode.CorrectLevel.H,
+    const qrcode = new QRCodeStyling({
+        width: 200,
+        height: 200,
+        type: 'svg',
+        data: `https://maclyonsden.com/announcement/${post.id}`,
+        image: 'https://maclyonsden.com/static/core/img/themes/logos/dark.png',
+        qrOptions: {
+            errorCorrectionLevel: 'H'
+        },
+        backgroundOptions: {
+            color: $(":root").css("--bg-grey")
+        },
+        imageOptions: {
+            crossOrigin: 'anonymous',
+            imageSize: 0.5,
+            margin: 5
+        },
+        dotsOptions: {
+            type: 'rounded'
+        },
+        cornersSquareOptions: {
+            color: $(":root").css("--gold"),
+            type: 'square'
+        },
+        cornersDotOptions: {
+            color: $(":root").css("--gold")
+        }
     });
+    qrcode.append(document.getElementById("qrcode"));
     document.getElementById("qrwrap").style.visibility = "visible";
   } catch (err) {
     document.getElementById("qrwrap").style.visibility = "hidden";
