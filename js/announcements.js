@@ -3,7 +3,7 @@
  * @author      Eric Shim
  * @author      Ken Shibata
  * @author      Project Metropolis
- * @version     1.1.6
+ * @version     1.2.0
  * @since       1.0.0
  */
 
