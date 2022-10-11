@@ -2,6 +2,7 @@
  * Sets announcements on the site
  * @author      Eric Shim
  * @author      Ken Shibata
+ * @author      Patrick Lin
  * @author      Project Metropolis
  * @version     1.2.0
  * @since       1.0.0

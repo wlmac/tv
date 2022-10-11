@@ -2,6 +2,7 @@
  * Fullscreens page when button clicked
  * @author      Eric Shim
  * @author      Ken Shibata
+ * @author      Patrick Lin
  * @author      Project Metropolis
  * @version     1.0.4
  * @since       1.0.0

@@ -75,9 +75,9 @@ function setDate() {
   if (hr % 6 == 0 && min == 0 && sec == 0) {
     updateVersion();
   }
-  // Sets the weather every 4th hour
-  if (hr % 4 == 0 && min == 0 && sec == 0) {
-    setWeatherNow(document.getElementById("weather"), myLocation);
+  // Sets the weather every 5 minutes (using internal caching server so don't worry about ratelimit)
+  if (min % 5 == 0 && sec == 0) {
+    setWeatherNow(document.getElementById("weather"));
   }
 
   // Time formatting
@@ -417,7 +417,7 @@ $(document).ready(() => {
       $("#next-period").text("No schedule loaded");
       console.error(`schedule fetch failed: ${err}`);
     });
-  setWeatherNow(document.getElementById("weather"), myLocation);
+  setWeatherNow(document.getElementById("weather"));
   setDate();
   // Updates datetime every 500 ms after waiting until next second
   setTimeout(setInterval(setDate, 500), 1000 - ms);
