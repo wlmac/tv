@@ -176,7 +176,7 @@ function setAnnouncement() {
         height: 200,
         type: 'svg',
         data: `https://maclyonsden.com/announcement/${post.id}`,
-        image: 'https://maclyonsden.com/static/core/img/themes/logos/dark.png',
+        image: '/img/mainlogo.png',
         qrOptions: {
             errorCorrectionLevel: 'H'
         },
