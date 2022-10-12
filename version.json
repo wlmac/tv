@@ -1,7 +1,7 @@
 {
   "name": "Metropolis TV",
   "description": "Informational site to be shown on the TV in the WLMCI school foyer.",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "since": "1.0.0",
   "authors": [
     {
@@ -9,6 +9,9 @@
     },
     {
       "name": "Ken Shibata"
+    },
+    {
+      "name": "Patrick Lin"
     },
     {
       "name": "Project Metropolis"
