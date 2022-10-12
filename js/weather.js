@@ -29,7 +29,7 @@ function setWeatherData(elem, unit) {
   title.innerText = `${Math.round(unit.consolidated_weather[0].the_temp)}°C`;
   let icon = document.createElement("img");
   icon.className = "w-icon";
-  icon.src = `img/weathericons/${unit.icon}.svg`;
+  icon.src = `img/weathericons/${unit.consolidated_weather[0].weather_state_abbr}.svg`;
   elem.appendChild(icon);
   elem.appendChild(title);
 }
