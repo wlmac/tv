@@ -1,7 +1,7 @@
 {
   "name": "Metropolis TV",
   "description": "Informational site to be shown on the TV in the WLMCI school foyer.",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "since": "1.0.0",
   "authors": [
     {
