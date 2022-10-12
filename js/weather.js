@@ -21,30 +21,12 @@ async function weather() {
     .then((resp) => resp.json());
 }
 
-async function getWeatherNow(location) {
-  return (await weather()).map(
-    (unit) => {
-      return {
-        type: "now",
-        time: new Date(unit.LocalObservationDateTime),
-        icon: unit.WeatherIcon,
-        daytime: unit.IsDayTime,
-        temp: {
-          value: unit.Temperature.Metric.Value,
-          unit: unit.Temperature.Metric.Unit,
-          unitType: unit.Temperature.Metric.UnitType,
-        },
-      };
-    }
-  );
-}
-
 function setWeatherData(elem, unit) {
   clearElem(elem);
   elem.className = "weather";
   let title = document.createElement("h1");
   title.className = "temp";
-  title.innerText = `${Math.round(unit.temp.value)}°C`;
+  title.innerText = `${Math.round(unit.consolidated_weather[0].the_temp)}°C`;
   let icon = document.createElement("img");
   icon.className = "w-icon";
   icon.src = `img/weathericons/${unit.icon}.svg`;
@@ -62,12 +44,12 @@ function setWeatherError(elem) {
 }
 
 async function setWeatherNow(elem) {
-  await getWeatherNow(location)
-    .then((data) => setWeatherData(elem, data[0]))
-    .catch((err) => {
-      setWeatherError(elem);
-      console.error(`weather fetch failed: ${err}`);
-    });
+  weather().then(resp => {
+    setWeatherData(elem, resp)
+  }).catch((err) => {
+    setWeatherError(elem);
+    console.error(`weather fetch failed: ${err}`);
+  });
 }
 
 function clearElem(elem) {
