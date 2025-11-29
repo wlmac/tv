@@ -149,9 +149,11 @@ function setAnnouncement() {
     // Sets announcement data
     $("#title").text(post.title);
     $("#org").html(
-      `${getClub(
-        post.organization.id
-      )}<date> • ${month} ${date}, ${hr}:${min} ${period}</date>`
+      `${
+        post.organization
+          ? getClub(post.organization.id)
+          : post.organization_string || ""
+      }<date> • ${month} ${date}, ${hr}:${min} ${period}</date>`
     );
     marked.setOptions({
       breaks: true, // Ensures linebreaks are rendered in markdown
