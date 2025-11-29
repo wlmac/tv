@@ -148,10 +148,11 @@ function setAnnouncement() {
 
     // Sets announcement data
     $("#title").text(post.title);
+    console.log(post);
     $("#org").html(
       `${
         post.organization
-          ? getClub(post.organization.id)
+          ? getClub(post.organization.id) || post.organization.name
           : post.organization_string || ""
       }<date> • ${month} ${date}, ${hr}:${min} ${period}</date>`
     );
