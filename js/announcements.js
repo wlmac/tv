@@ -25,24 +25,11 @@ let clubs;
 let idx = 0;
 
 /**
- * Returns a club's name based on its ID
- * @param {number} id - Club ID
- * @returns {string} Club name
- */
-function getClub(id) {
-  for (let i = 0; i < clubs.length; i++) {
-    if (clubs[i].id == id) {
-      return clubs[i].name;
-    }
-  }
-}
-
-/**
  * Gets announcement list
  */
 async function getAnnouncements() {
-  // Gets the club list from the API
-  return await fetch("https://maclyonsden.com/api/v3/obj/organization")
+  // Gets the announcement list from the API
+  return await fetch("https://maclyonsden.com/api/v3/obj/announcement")
     .then((resp) => {
       if (!resp.ok) {
         throw new Error(`resp not ok: ${resp}`);
@@ -50,53 +37,38 @@ async function getAnnouncements() {
       return resp;
     })
     .then((resp) => resp.json())
-    .then(async (orgs) => {
-      if (orgs === undefined) {
-        throw new Error("API request (for organizations) returned nothing");
+    .then((announce) => {
+      if (announce === undefined) {
+        throw new Error("API request (for announcement) returned nothing");
       }
-      clubs = orgs.results;
-      // Gets the announcement list from the API
-      return await fetch("https://maclyonsden.com/api/v3/obj/announcement")
-        .then((resp) => {
-          if (!resp.ok) {
-            throw new Error(`resp not ok: ${resp}`);
-          }
-          return resp;
-        })
-        .then((resp) => resp.json())
-        .then((announce) => {
-          if (announce === undefined) {
-            throw new Error("API request (for announcement) returned nothing");
-          }
 
-          /** @type {number} */
-          let index = 0;
-          /**
-           * Limits how old the announcements are
-           * @type {Object}
-           */
-          let range = new Date();
-          range.setDate(range.getDate() - 5); // Sets range to 5 days ago
+      /** @type {number} */
+      let index = 0;
+      /**
+       * Limits how old the announcements are
+       * @type {Object}
+       */
+      let range = new Date();
+      range.setDate(range.getDate() - 5); // Sets range to 5 days ago
 
-          // Find oldest announcement in range
-          for (index = 0; index < announce.results.length; index++) {
-            if (
-              Date.parse(announce.results[index].last_modified_date) < range.getTime()
-            ) {
-              break;
-            }
-          }
+      // Find oldest announcement in range
+      for (index = 0; index < announce.results.length; index++) {
+        if (
+          Date.parse(announce.results[index].last_modified_date) < range.getTime()
+        ) {
+          break;
+        }
+      }
 
-          // Sets new announcement list within range
-          announcements = announce.results.slice(0, index + 2);
+      // Sets new announcement list within range
+      announcements = announce.results.slice(0, index + 2);
 
-          // Caps announcement list length at 8
-          if (announcements.length > 8) {
-            announcements = announcements.slice(0, 8);
-          }
+      // Caps announcement list length at 8
+      if (announcements.length > 8) {
+        announcements = announcements.slice(0, 8);
+      }
 
-          return announcements;
-        });
+      return announcements;
     });
 }
 
@@ -152,7 +124,7 @@ function setAnnouncement() {
     $("#org").html(
       `${
         post.organization
-          ? getClub(post.organization.id) || post.organization.name
+          ? post.organization.name
           : post.organization_string || ""
       }<date> • ${month} ${date}, ${hr}:${min} ${period}</date>`
     );
