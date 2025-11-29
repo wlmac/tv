@@ -42,7 +42,7 @@ function getClub(id) {
  */
 async function getAnnouncements() {
   // Gets the club list from the API
-  return await fetch("https://maclyonsden.com/api/organizations")
+  return await fetch("https://maclyonsden.com/api/v3/obj/organization")
     .then((resp) => {
       if (!resp.ok) {
         throw new Error(`resp not ok: ${resp}`);
@@ -54,9 +54,9 @@ async function getAnnouncements() {
       if (orgs === undefined) {
         throw new Error("API request (for organizations) returned nothing");
       }
-      clubs = orgs;
+      clubs = orgs.results;
       // Gets the announcement list from the API
-      return await fetch("https://maclyonsden.com/api/announcements")
+      return await fetch("https://maclyonsden.com/api/v3/obj/announcement")
         .then((resp) => {
           if (!resp.ok) {
             throw new Error(`resp not ok: ${resp}`);
@@ -79,16 +79,16 @@ async function getAnnouncements() {
           range.setDate(range.getDate() - 5); // Sets range to 5 days ago
 
           // Find oldest announcement in range
-          for (index = 0; index < announce.length; index++) {
+          for (index = 0; index < announce.results.length; index++) {
             if (
-              Date.parse(announce[index].last_modified_date) < range.getTime()
+              Date.parse(announce.results[index].last_modified_date) < range.getTime()
             ) {
               break;
             }
           }
 
           // Sets new announcement list within range
-          announcements = announce.slice(0, index + 2);
+          announcements = announce.results.slice(0, index + 2);
 
           // Caps announcement list length at 8
           if (announcements.length > 8) {
