@@ -29,7 +29,7 @@ let idx = 0;
  */
 async function getAnnouncements() {
   // Gets the announcement list from the API
-  return await fetch("https://maclyonsden.com/api/v3/obj/announcement")
+  return await fetch("https://maclyonsden.com/api/v3/obj/announcement?limit=20")
     .then((resp) => {
       if (!resp.ok) {
         throw new Error(`resp not ok: ${resp}`);
@@ -119,6 +119,7 @@ function setAnnouncement() {
     }
 
     // Sets announcement data
+    $("#logo").attr("src", "https://maclyonsden.com" + post.organization.icon);
     $("#title").text(post.title);
     console.log(post);
     $("#org").html(
